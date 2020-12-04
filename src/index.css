@@ -536,7 +536,6 @@ body {
   width: calc(100% - 6rem);
   left: 6rem;
   top: 5.5rem;
-  display: none;
   color: black;
   padding: 2rem;
 }
@@ -556,7 +555,7 @@ body {
   top: 5rem;
   background: #1e1e1e;
   z-index: 999;
-  display: none;
+  /* display: none; */
   color: white;
 }
 
