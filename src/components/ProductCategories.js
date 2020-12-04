@@ -12,9 +12,10 @@ import nextCat from '../assets/product-categories/nextCatGold.svg'
 
 const ProductCategories = () => (
   <>
+    <div className="product-categories">
     <SliderMain />
-    {/* <div className="product-categories">
-      <div className="product-categories-flexcenter">
+
+      {/* <div className="product-categories-flexcenter">
         <div className="product-categories-title">
           Product Categories
         </div>
@@ -70,15 +71,9 @@ const ProductCategories = () => (
           <div className="product-categories-icon">
           </div>
         </div>
-      </div>      
-      <div className="product-categories-details-lower">
-        <div className="product-categories-product-title">FURNITURE</div>
-        <div className="product-categories-lower-action-button">
-          Learn More &nbsp; ⟶
-        </div>
-        <div> Indicator </div>
-      </div>
-    </div> */}
+      </div>       */}
+
+    </div>
   </>
 )
 
@@ -170,13 +165,21 @@ function SliderMain() {
       css={css`
         overflow-x: hidden;
         margin-top: -13%;
-        
+        @media (max-width: 1024px) {
+          margin-top: -18%;
+        }
+        @media (max-width: 900px) {
+          margin-top: -25%;
+        }
+
+        @media (max-width: 767px) {
+          margin-top: -35%;
+        }
         
       `}
     >
       <div
         css={css`
-          
           position: relative;
           left: -100%;
           @media (max-width: 1250px) {
@@ -185,7 +188,9 @@ function SliderMain() {
           @media (max-width: 875px) {
             left: -93%;
           }
-          
+          @media (max-width: 767px) {
+            left: -70%;
+          }
         
         `}
       >
@@ -200,12 +205,16 @@ function SliderMain() {
             @media (max-width: 875px) {
               width: 260%;
             }
+
+            @media (max-width: 767px) {
+              width: 200%;
+            }
           `}
         >
           {currentSlides.map ((slide) => (
             <Slider animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}>
               <img alt="curr" src={slide.image}></img>
-              <div 
+              <div //Description and Learn More Button
                 css={css`
                   display: flex;
                   flex-direction: column;
@@ -213,30 +222,24 @@ function SliderMain() {
                   padding: 5rem;
                   margin: 5rem 5rem 5rem 5rem;
                   max-width: 400px;
-                  height: 400px;
-                  
-              
-
+                  height: 450px;
+       
                   @media (max-width: 1250px) {
-                    margin: 3rem;
+                    margin: 8rem 0rem;
                     padding: 1rem;
+                    height: 300px;
                   }
 
                   @media (max-width: 1000px) {
-                    margin: 3rem;
-                    margin-bottom: 4rem;
-                    // padding: 2rem;
-                    
-                   
+                    margin: 10rem -3rem;
                   }
 
-                  @media (max-width: 875px){
-                    margin: 1rem;
-                    padding: 1rem;
+                  @media (max-width: 767px) {
+                    display: none;
                   }
+
                 `}
               >
-
                 <div 
                   css={css`
                     display: flex;
@@ -249,12 +252,20 @@ function SliderMain() {
                   css={css`
                     font-family: "Mercury-Text-G2";
                     font-style: italic;
-                    font-size: 16px;
+                    font-size: 16px;                   
                   `}
                 >
                   Product Categories
                 </div>                  
-                <div onClick={()=>nextSlide(1)}>
+                <div 
+                  onClick={()=>nextSlide(1)}
+                  css={css`
+                    margin: 2rem 0;
+                    @media (max-width: 1250px) {
+                      display: none;
+                    }
+                  `}
+                >
                   <img height="144px" src={nextCat}></img>
                 </div>
                 </div>
@@ -263,6 +274,7 @@ function SliderMain() {
                     font-size: 26px;
                     font-family: "Geograph-500";
                     line-height: 28px;
+                    margin: -1.5rem 0 0;
                   `}
                 >       
 
@@ -279,6 +291,9 @@ function SliderMain() {
           ))}
         </div>
       </div>
+      <div className="product-categories-title">
+          Product Categories
+        </div>
       <div>
         <button onClick={() => nextSlide(-1)}>Previous</button>
         <button onClick={() => nextSlide(1)}>Next</button>
@@ -289,10 +304,62 @@ function SliderMain() {
         <button onClick={() => chooseSlide(5)}>5</button>
         <button onClick={() => chooseSlide(6)}>6</button>
       </div>
+      <div className="product-categories-slider-action">
+        <div className="product-categories-icon">
+        </div>
+        <div className="product-categories-chev-left" onClick={() => nextSlide(-1)} />
+        <div className="product-categories-icon">
+        </div>
+        <div className="product-categories-chev-right" onClick={() => nextSlide(1)} />
+        <div className="product-categories-icon">
+        </div>
+      </div>
+      <div className="product-categories-slider-action-main">
+          <div className="product-categories-icon">
+          </div>
+          <div className="product-categories-vert-line">
+          </div>
+          <div className="product-categories-icon">
+          </div>
+          <div className="product-categories-vert-line">
+          </div>
+          <div className="product-categories-icon">
+          </div>
+          <div className="product-categories-vert-line">
+          </div>
+          <div className="product-categories-icon">
+          </div>
+          <div className="product-categories-vert-line">
+          </div>
+          <div className="product-categories-icon">
+          </div>
+          <div className="product-categories-vert-line">
+          </div>
+          <div className="product-categories-icon">
+          </div>
+        </div>
+        <div className="product-categories-details-lower">
+        <div className="product-categories-product-title">FURNITURE</div>
+        <div className="product-categories-lower-action-button">
+          Learn More &nbsp; ⟶
+        </div>
+        <div css={css`display: flex`}>
+          { [1,2,3,4,5,6].map( pos => (
+            <Indicator slidePos={slidePos} pos={pos}> </Indicator>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
+const Indicator = styled.div`
+  background: grey;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  ${props=> props.pos === props.slidePos && "background: black"}
+`
 const Slider = styled.div`
   display: flex;
   align-items: flex-end;
@@ -312,7 +379,7 @@ const Slider = styled.div`
       transform: scale(.66)
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       transform: scale(.423)
     }
   }
