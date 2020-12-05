@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
+import styled from '@emotion/styled'; 
 import chevDown from '../../assets/nav-main/chev-down.svg'
 import { useContext, useState } from 'react';
 import { ConfigContext } from '../../App';
+import pillow from "../../assets/nav-main/pillow.png"
 
 const NavLower = (props) => {
   const [ open, setOpen ] = useState(false);
@@ -49,22 +51,38 @@ const NavLower = (props) => {
                   min-width: 400px;
                   left: 0;
                   top: 60px;
-                  width: 609px;
-                  height: 393px;
-                  border: 1px solid red;
+                  width: calc(609px - 2rem);
+                  height: calc(393px - 2rem);
                   background: white;
                   margin: -2rem;
+                  display: flex;
+                  justify-content: space-between;
+                  color: black;
+                  padding: 1rem;
                 `}
               >
-                HELLL O OPEN NAV
-                <div>MEMORY FOAM</div>
-                <div>ACTIVEDOUGH</div>
-                <div>LATEX</div>
-                <div>FILLED</div>
-                <div>COOLING</div>
-                <div>INFUSIONS</div>
-                <div>UNIQUE SHAPES</div>
-                <div>TRAVEL</div>
+                <div
+                  css={css`
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    margin: 1.5rem 0rem 1.5rem 2rem;
+                  `}                  
+                >
+                  <div>MEMORY FOAM</div>
+                  <div>ACTIVEDOUGH</div>
+                  <div>LATEX</div>
+                  <div>FILLED</div>
+                  <div>COOLING</div>
+                  <div>INFUSIONS</div>
+                  <div>UNIQUE SHAPES</div>
+                  <div>TRAVEL</div>
+                  <UnderlinedBold>PILLOWS 101</UnderlinedBold>
+                  <UnderlinedBold>VIEW ALL PILLOWS</UnderlinedBold>
+                </div>
+                <div>
+                  <img src={pillow} />
+                </div>
               </div>
             }
           </div>
@@ -83,4 +101,8 @@ const NavLower = (props) => {
   )
 }
 
+const UnderlinedBold = styled.div`
+  text-decoration: underline;
+  font-family: "Geograph-Bold";
+`
 export default NavLower

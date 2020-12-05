@@ -30,6 +30,12 @@ code {
   src: url('assets/font/GeographTest-Regular.otf') format('opentype');
 }  
 
+@font-face {
+  font-family: Geograph-Bold;
+  src: url(./assets/font/GeographTest-Medium.otf) format('opentype');
+
+}
+
 
 body {
   /* background-color: #1E1E1E; */
@@ -485,6 +491,7 @@ body {
   z-index: 999;
   padding: 0 1rem;
   width: calc(100% - 2rem);
+  font-family: "Geograph-500";
 }
 
 .nav-lower-hamburger {
