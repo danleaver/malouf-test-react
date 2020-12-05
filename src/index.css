@@ -476,7 +476,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: black;
+  background: #1e1e1e;
   color: white;
   height: 2.5rem;
   position: fixed;
@@ -534,6 +534,8 @@ body {
     display: flex;
     justify-content: space-between;
     width: 60vw;
+    font-size: 14px;
+    letter-spacing: .2px;
   }
 }
 

@@ -11,33 +11,31 @@ import SleepPurpose from './components/SleepPurpose';
 import Sponsors from './components/Sponsors';
 import WeUnderstand from './components/WeUnderstand';
 import Footer from './components/Footer';
+import { createContext, useState } from 'react';
 
-const App = () => (
-<>
-  <Navbar />
-  <Hero />
-  <WeUnderstand />
-  <ProductCategories />
-  <SleepPurpose />
-  <BestSellers />
-  <InTheRoom />
-  <Reviews />
-  <Sponsors />
-  <Footer />
+export const ConfigContext = createContext()
 
-  {/* HERO   clearfix should be 5 rem total */}
+const App = () => {
+  const [ navOpen, setNavOpen ] = useState(false);
 
-  {/* Image 3 */}
-  {/* Image 4 */}
-  {/* End Of Image 4 */}
- 
-  {/* BEST SELLERS */}
-  
-  
+  const configValue = {
+    navOpen, setNavOpen
+  }
 
- 
-</>
-
-)
+  return (
+    <ConfigContext.Provider value={configValue}>
+      <Navbar />
+      <Hero />
+      <WeUnderstand />
+      <ProductCategories />
+      <SleepPurpose />
+      <BestSellers />
+      <InTheRoom />
+      <Reviews />
+      <Sponsors />
+      <Footer />
+    </ConfigContext.Provider>
+  )
+}
 
 export default App
