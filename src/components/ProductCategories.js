@@ -315,10 +315,16 @@ function SliderMain() {
         </div>
       </div>
       <div className="product-categories-slider-action-main">
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
+
+      { [...Array(6)].map( item => (
+        <>
+           <div className="product-categories-icon">
+           </div>
+           <div className="product-categories-vert-line">
+           </div>
+        </>
+      ))}
+         
           <div className="product-categories-icon">
           </div>
           <div className="product-categories-vert-line">
@@ -344,7 +350,7 @@ function SliderMain() {
           Learn More &nbsp; ⟶
         </div>
         <div css={css`display: flex`}>
-          { [1,2,3,4,5,6].map( pos => (
+          { [...Array(6)].map( pos => (
             <Indicator slidePos={slidePos} pos={pos}> </Indicator>
           ))}
         </div>

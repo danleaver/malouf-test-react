@@ -973,10 +973,23 @@ body {
 .reviews {
   background: #1f1f1f;
   color: white;
-  padding: 4.2rem;
+  /* padding: 4.2rem; */
   line-height: 30px;
   font-size: 18px;
   text-align: center;
+  min-width: 50vw;
+}
+
+.review {
+  font-family: Mercury-Text-G2;
+  margin: 5rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.review:hover {
+  transform: scale(1.05)
 }
 
 .reviewer {
@@ -986,7 +999,7 @@ body {
 
 @media (min-width: 768px) {
   .reviews {
-    padding: 9.2rem 14.5rem;
+    /* padding: 9.2rem 14.5rem; */
   }
 }
 
