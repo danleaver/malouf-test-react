@@ -269,7 +269,7 @@ body {
 }
 
 .hero-slider-image {
-  background: url("./assets/hero/main.png") left no-repeat;
+  
   background-size: cover;
   height: 500px;
   width: 100%;
@@ -442,19 +442,26 @@ body {
   .hero-slider-image {
     height: 783px;
   }
+
   .hero-slider-image2 {
     height: 783px;
   }
+
   .hero-up-next-full {
     display: flex;
     font-family: Geograph-500;
   }
+
   .hero-up-next-full-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     background: #1f1f1f;
+    /* animation: slide-in 5sec ease-in-out; */
   }
+
+
+
   .hero-up-next-full-right2 {
     display: flex;
     flex-direction: column;
@@ -1218,12 +1225,20 @@ body {
 
 
   /* Fading animation */  
-  .fade {  
+.fade {  
     -webkit-animation-name: fade;  
     -webkit-animation-duration: 1.5s;  
     animation-name: fade;  
-    animation-duration: 1.5s;  
+    animation-duration: 0.5s;  
 }  
+
+.slide-in {
+  /* -webkit-animation-name: fade;  
+  -webkit-animation-duration: 1.5s;   */
+  /* animation-name: slide-in;  
+  animation-duration: 1s;   */
+  animation: slide-in 1s ease-in-out
+}
 @-webkit-keyframes fade {  
     from {  
         opacity: .4  
@@ -1241,5 +1256,19 @@ body {
         opacity: 1  
     }  
 }  
+
+@keyframes slide-in {
+  0% {
+    margin-right: -15rem
+  }
+  33% {
+    margin-right: -15rem
+  }
+
+  100% {
+    margin-right: 0rem
+  }
+
+}
 
 
