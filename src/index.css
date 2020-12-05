@@ -55,12 +55,15 @@ body {
   flex-shrink: 0;
   scrollbar-color: blue;
   scroll-snap-type: x mandatory; 
+  
 }
 
 .best-sellers-product {
-  padding: 1rem;
+  /* padding: 1rem; */
+  margin: 1rem;
   font-size: 14px;
   scroll-snap-align: start;
+  cursor: pointer;
 }
 
 .best-sellers-subtitle {
@@ -710,10 +713,13 @@ body {
 }
 
 .product-categories-icon {
-  background: url(./assets/product-categories/furniture.svg) center no-repeat;
+  background: url(./assets/product-categories/SVG/furniture.svg) center no-repeat;
   background-size: cover;
   height: 50px;
   width: 53px;
+  filter: opacity(35%);
+  cursor: zoom-in;
+  /* cursor: pointer; */
 }
 
 .product-categories-chev-left {
@@ -1046,6 +1052,7 @@ body {
 }
 .sleep-purpose-lower-action {
   padding: 4rem 0;
+  cursor: pointer;
 }
 .sleep-purpose-lower-action-btn {
   background: #FFFFFF;
@@ -1057,6 +1064,7 @@ body {
   align-items: center;
   font-family: "Mercury-Text-G2";
   font-style: italic;
+  cursor: pointer;
 }
 
 .sleep-purpose-main {

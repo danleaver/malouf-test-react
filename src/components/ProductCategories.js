@@ -88,6 +88,8 @@ const pics = [
 ]
 
 function SliderMain() {
+  const [ indicatorTitle, setIndicatorTitle ] = useState(pics[0].title)
+  const [ indicatorPos, setIndicatorPos ] = useState(1)
   const [ slidePos, setSlidePos ] = useState(1);
   const [ currentSlides, setCurrentSlides] = useState([pics[pics.length - 1], pics[0], pics[1]])
   const mainDivRef = useRef(null)
@@ -119,6 +121,9 @@ function SliderMain() {
       prevSlide = pics.length - 1
     }
 
+
+    //here we should set timeout
+
     setCurrentSlides([
       pics[prevSlide],
       pics[tmpPos - 1],
@@ -126,6 +131,7 @@ function SliderMain() {
     ])
 
     setSlidePos(tmpPos)
+    setIndicatorPos(tmpPos)
     setAnimateOver(false)
    
     //resets css
@@ -135,12 +141,20 @@ function SliderMain() {
     console.log(sliderRef)
   }, [slidePos])
 
+
+  useEffect(() => {
+    setIndicatorTitle(pics[indicatorPos - 1].title)
+  }, [indicatorPos])
+
   const nextSlide = (n) => {
     if (n === -1) {
       setAnimateInLeft(true)
     } else { 
       setAnimateInRight(true)
     }
+
+
+    setIndicatorPos(slidePos + n)
 
     setTimeout(() => {
       setAnimateOver(true)
@@ -156,6 +170,7 @@ function SliderMain() {
     } else if (k === slidePos + 1) {
       nextSlide(1)
     } else {
+      setIndicatorPos(k)
       setSlidePos(k)
     }
   }
@@ -295,6 +310,8 @@ function SliderMain() {
           Product Categories
         </div>
       <div>
+
+        {/* temp buttons */}
         <button onClick={() => nextSlide(-1)}>Previous</button>
         <button onClick={() => nextSlide(1)}>Next</button>
         <button onClick={() => chooseSlide(1)}>1</button>
@@ -304,54 +321,52 @@ function SliderMain() {
         <button onClick={() => chooseSlide(5)}>5</button>
         <button onClick={() => chooseSlide(6)}>6</button>
       </div>
+      {/* for mobile */}
       <div className="product-categories-slider-action">
         <div className="product-categories-icon">
         </div>
         <div className="product-categories-chev-left" onClick={() => nextSlide(-1)} />
-        <div className="product-categories-icon">
+        <div 
+          css={css`filter: none;`}
+          className="product-categories-icon"
+        >
         </div>
         <div className="product-categories-chev-right" onClick={() => nextSlide(1)} />
         <div className="product-categories-icon">
         </div>
       </div>
-      <div className="product-categories-slider-action-main">
-
-      { [...Array(6)].map( item => (
-        <>
-           <div className="product-categories-icon">
-           </div>
-           <div className="product-categories-vert-line">
-           </div>
-        </>
-      ))}
-         
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
+      {/* for tablet/desktop */}
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <div className="product-categories-slider-action-main">
+          { [...Array(6)].map( (tmp, idx) => (
+            <>
+              <div 
+                onClick={() => chooseSlide(idx + 1)}
+                css={css`
+                  ${(indicatorPos - 1 === idx) && "filter: none;"}
+                `}
+                className="product-categories-icon"
+              />
+              {idx !== 5 && 
+                <div className="product-categories-vert-line" />
+              }
+            </>
+          ))}
         </div>
+      </div>
         <div className="product-categories-details-lower">
-        <div className="product-categories-product-title">FURNITURE</div>
+        <div className="product-categories-product-title">{indicatorTitle}</div>
         <div className="product-categories-lower-action-button">
           Learn More &nbsp; ⟶
         </div>
         <div css={css`display: flex`}>
-          { [...Array(6)].map( pos => (
-            <Indicator slidePos={slidePos} pos={pos}> </Indicator>
+          { [...Array(6)].map( (tmp, idx) => (
+            <Indicator indicatorPos={indicatorPos} pos={idx + 1}> </Indicator>
           ))}
         </div>
       </div>
@@ -364,7 +379,7 @@ const Indicator = styled.div`
   border-radius: 50%;
   height: 20px;
   width: 20px;
-  ${props=> props.pos === props.slidePos && "background: black"}
+  ${props=> props.pos === props.indicatorPos && "background: #1E1e1e;"}
 `
 const Slider = styled.div`
   display: flex;
