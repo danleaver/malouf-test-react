@@ -13,70 +13,10 @@ import nextCat from '../assets/product-categories/nextCatGold.svg'
 const ProductCategories = () => (
   <>
     <div className="product-categories">
-    <SliderMain />
-
-      {/* <div className="product-categories-flexcenter">
-        <div className="product-categories-title">
-          Product Categories
-        </div>
-
-        <div className="product-categories-details-main">
-          <div className="product-categories-title-main">
-            Product Categories
-          </div>
-          <div className="product-categories-product-title">
-            FURNITURE
-          </div>
-          <div>
-            Here is copy that provides a description of this feel and material. Also brief mention of how our material is different. Here is copy that provides a description of this feel and material. Also brief mention of how our material is different. 
-          </div>
-          <div className="product-categories-lower-action-button">
-            Learn More &nbsp; ⟶
-          </div>
-        </div>
-        <div className="product-categories-spacer" />
-      </div>
-      <div className="product-categories-slider-action">
-        <div className="product-categories-icon">
-        </div>
-        <div className="product-categories-chev-left" onclick="nextSlide(-1)" />
-        <div className="product-categories-icon">
-        </div>
-        <div className="product-categories-chev-right" onclick="nextSlide(1)" />
-        <div className="product-categories-icon">
-        </div>
-      </div>
-      <div className="product-categories-slider-container">
-        <div className="product-categories-slider-action-main">
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
-          <div className="product-categories-vert-line">
-          </div>
-          <div className="product-categories-icon">
-          </div>
-        </div>
-      </div>       */}
-
+      <SliderMain />
     </div>
   </>
 )
-
 
 const pics = [
   { image: furniture, title: "FURNITURE"},
@@ -99,18 +39,9 @@ function SliderMain() {
   const [ animateInLeft, setAnimateInLeft ] = useState(false)
   const [ animateOver, setAnimateOver ] = useState(false)
 
-
   useEffect(() => {
-    let tmpPos = slidePos
+    let tmpPos = wrapPos(slidePos)
 
-    // --for wraparoud --
-    //wraps position
-    if (tmpPos > pics.length) {
-      tmpPos = 1
-    } else if (tmpPos < 1) {
-      tmpPos = pics.length
-    }
-    
     // sets neighbors
     let nextSlide = tmpPos
     let prevSlide = tmpPos - 2
@@ -120,9 +51,6 @@ function SliderMain() {
     } else if (tmpPos === 1){
       prevSlide = pics.length - 1
     }
-
-
-    //here we should set timeout
 
     setCurrentSlides([
       pics[prevSlide],
@@ -136,15 +64,20 @@ function SliderMain() {
    
     //resets css
     let tmp = mainDivRef.current.offsetWidth
-    console.log("offsetWidth:" ,  tmp)
-    console.log("innderwidth: ", window.innerWidth)
-    console.log(sliderRef)
-  }, [slidePos])
-
+   }, [slidePos])
 
   useEffect(() => {
-    setIndicatorTitle(pics[indicatorPos - 1].title)
+    setIndicatorTitle(pics[ wrapPos(indicatorPos)- 1 ].title)
   }, [indicatorPos])
+
+  const wrapPos = (pos) => {
+    if (pos > pics.length) {
+      return 1
+    } else if (pos < 1) {
+      return pics.length
+    }
+    return pos
+  }
 
   const nextSlide = (n) => {
     if (n === -1) {
@@ -152,7 +85,6 @@ function SliderMain() {
     } else { 
       setAnimateInRight(true)
     }
-
 
     setIndicatorPos(slidePos + n)
 
@@ -180,9 +112,11 @@ function SliderMain() {
       css={css`
         overflow-x: hidden;
         margin-top: -13%;
+
         @media (max-width: 1024px) {
           margin-top: -18%;
         }
+
         @media (max-width: 900px) {
           margin-top: -25%;
         }
@@ -197,26 +131,27 @@ function SliderMain() {
         css={css`
           position: relative;
           left: -100%;
+
           @media (max-width: 1250px) {
             left: -110%;
           }
+
           @media (max-width: 875px) {
             left: -93%;
           }
+
           @media (max-width: 767px) {
             left: -70%;
           }
-        
         `}
       >
-
         <div 
           ref={mainDivRef}
           css={css`
-            // background: #f6f6f6;
             display: flex;
             width: 300%;
             justify-content: center;
+
             @media (max-width: 875px) {
               width: 260%;
             }
@@ -276,12 +211,13 @@ function SliderMain() {
                   onClick={()=>nextSlide(1)}
                   css={css`
                     margin: 2rem 0;
+
                     @media (max-width: 1250px) {
                       display: none;
                     }
                   `}
                 >
-                  <img height="144px" src={nextCat}></img>
+                  <img height="144px" alt="next category" src={nextCat}></img>
                 </div>
                 </div>
                 <div
@@ -292,7 +228,6 @@ function SliderMain() {
                     margin: -1.5rem 0 0;
                   `}
                 >       
-
                   {slide.title}
                 </div>
                 <div css={css`font-family: Mercury-Text-G2`}>
@@ -306,40 +241,16 @@ function SliderMain() {
           ))}
         </div>
       </div>
-      <div className="product-categories-title">
-          Product Categories
-        </div>
-      <div>
-
-        {/* temp buttons */}
-        <button onClick={() => nextSlide(-1)}>Previous</button>
-        <button onClick={() => nextSlide(1)}>Next</button>
-        <button onClick={() => chooseSlide(1)}>1</button>
-        <button onClick={() => chooseSlide(2)}>2</button>
-        <button onClick={() => chooseSlide(3)}>3</button>
-        <button onClick={() => chooseSlide(4)}>4</button>
-        <button onClick={() => chooseSlide(5)}>5</button>
-        <button onClick={() => chooseSlide(6)}>6</button>
-      </div>
-      {/* for mobile */}
-      <div className="product-categories-slider-action">
-        <div className="product-categories-icon">
-        </div>
-        <div className="product-categories-chev-left" onClick={() => nextSlide(-1)} />
-        <div 
-          css={css`filter: none;`}
-          className="product-categories-icon"
-        >
-        </div>
-        <div className="product-categories-chev-right" onClick={() => nextSlide(1)} />
-        <div className="product-categories-icon">
-        </div>
-      </div>
-      {/* for tablet/desktop */}
+      {/* for tablet/desktop */}      
       <div
         css={css`
           display: flex;
           justify-content: center;
+          margin: 2rem;
+          
+          @media (max-width: 1200px) {
+            margin: -3rem 0 3rem;
+          }
         `}
       >
         <div className="product-categories-slider-action-main">
@@ -349,6 +260,9 @@ function SliderMain() {
                 onClick={() => chooseSlide(idx + 1)}
                 css={css`
                   ${(indicatorPos - 1 === idx) && "filter: none;"}
+                  &:hover{
+                    transform: scale(1.1);
+                  }
                 `}
                 className="product-categories-icon"
               />
@@ -358,16 +272,50 @@ function SliderMain() {
             </>
           ))}
         </div>
-      </div>
-        <div className="product-categories-details-lower">
-        <div className="product-categories-product-title">{indicatorTitle}</div>
-        <div className="product-categories-lower-action-button">
-          Learn More &nbsp; ⟶
+      </div>  
+      <div className="product-categories-title">
+          Product Categories
+        </div>   
+      
+      {/* MOBILE */}
+      <div className="product-categories-mobile-wrapper">      
+        {/* for mobile slider */}
+        <div className="product-categories-slider-action">
+          <div css={css`cursor: auto;`} className="product-categories-icon">
+          </div>
+          <div className="product-categories-chev-left" onClick={() => nextSlide(-1)} />
+          <div 
+            css={css`filter: none; cursor: auto;`}
+            className="product-categories-icon"
+          >
+          </div>
+          <div className="product-categories-chev-right" onClick={() => nextSlide(1)} />
+          <div css={css`cursor: auto;`} className="product-categories-icon">
+          </div>
         </div>
-        <div css={css`display: flex`}>
-          { [...Array(6)].map( (tmp, idx) => (
-            <Indicator indicatorPos={indicatorPos} pos={idx + 1}> </Indicator>
-          ))}
+
+        {/* MOBILE title, learn more, indicators */}
+        <div className="product-categories-details-lower">
+          <div className="product-categories-product-title">{indicatorTitle}</div>
+          <div css={css`padding: 1.5rem`}>
+            <div className="product-categories-lower-action-button">
+              Learn More &nbsp; ⟶
+            </div>
+          </div>
+          <div 
+            css={css`
+              display: flex;
+              margin: 0 0 1rem;
+            `}
+          >
+            { [...Array(6)].map( (tmp, idx) => (
+              <Indicator
+                onClick={() => chooseSlide(idx + 1)}
+                indicatorPos={indicatorPos} pos={idx + 1}
+              /> 
+              
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -377,8 +325,10 @@ function SliderMain() {
 const Indicator = styled.div`
   background: grey;
   border-radius: 50%;
-  height: 20px;
-  width: 20px;
+  height: 14px;
+  width: 14px;
+  cursor: pointer;
+  margin: 0 0.25rem;
   ${props=> props.pos === props.indicatorPos && "background: #1E1e1e;"}
 `
 const Slider = styled.div`
@@ -392,16 +342,16 @@ const Slider = styled.div`
 
   & img {
     @media (max-width: 1250px) {
-      // display: none;
       transform: scale(.74);
     }
 
     @media (max-width: 1023px) {
-      transform: scale(.66)
+      transform: scale(.66);
     }
 
     @media (max-width: 767px) {
-      transform: scale(.423)
+      transform: scale(.423);
+      //I should set the height here and not transform.. transform is a terrible way of doing it
     }
   }
 `

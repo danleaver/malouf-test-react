@@ -30,9 +30,6 @@ code {
   src: url('assets/font/GeographTest-Regular.otf') format('opentype');
 }  
 
-@font-face {
-  font-family: Geograph
-}
 
 body {
   /* background-color: #1E1E1E; */
@@ -725,16 +722,32 @@ body {
 .product-categories-chev-left {
   background: url(./assets/product-categories/chev-left.svg) center no-repeat;
   background-size: cover;
-  height: 60px;
-  width: 50px;
+  height: 23px;
+  width: 12px;
+  cursor: pointer;
 }
 
 .product-categories-chev-right {
   background: url(./assets/product-categories/chev-right.svg) center no-repeat;
   background-size: cover;
-  height: 60px;
-  width: 50px;
+  height: 23px;
+  width: 12px;
+  cursor: pointer;
 }
+
+.product-categories-chev-right:hover {
+  transform: scale3d(10);
+  
+}
+
+
+.product-categories-mobile-wrapper {
+  /* margin: -15rem 0 15rem;  */
+  
+  /* z-index: 999; */
+  
+}
+/*  ^^ this cancels the buttons */
 
 .product-categories-next-product {
   position: fixed;
@@ -749,7 +762,9 @@ body {
 .product-categories-slider-action {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem;
+  
 }
 
 .product-categories-slider-action-main {
@@ -761,7 +776,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 120px;
+  /* height: 120px; */
 }
 
 .product-categories-details-main {
@@ -784,6 +799,7 @@ body {
   align-items: center;
   font-family: "Mercury-Text-G2";
   font-style: italic;
+  
 }
 
 @media (min-width: 768px) {
@@ -807,6 +823,10 @@ body {
     justify-content: flex-start;
     align-items: center;
     margin-left: 4rem;
+  }
+
+  .product-categories-mobile-wrapper {
+    display: none;
   }
 
   .product-categories-product {
