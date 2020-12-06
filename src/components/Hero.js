@@ -28,7 +28,7 @@ const Hero = () => {
 
     if (k > heroSliders.length - 1) {
       k = 0 
-    } else if (n < 0) {
+    } else if (k < 0) {
       k = heroSliders.length - 1
     }  
 
@@ -56,7 +56,7 @@ const Image = (props) => (
         <HeroSliderImage className="hero-slider-image" image={props.image}>
           <div className="hero-spacer" />
           <div className="hero-chev-main">
-            <div className="hero-up-next" onClick={() => props.nextSlide(1)}>
+            <div className="hero-up-next" onClick={() => props.nextSlide(-1)}>
               PREVIOUS
               <img height="30px" src="assets/hero-slider/chev-right.svg" />
             </div>

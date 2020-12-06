@@ -7,13 +7,23 @@ import { useContext, useState } from 'react';
 import { ConfigContext } from '../../App';
 import pillow from "../../assets/nav-main/pillow.png"
 
+
+// const categories = [
+//   { name: "FURNITURE", image: furniture, expands: false, },
+//   { name: "BASES", image: bedding, expands: true, },
+//   { name: "BEDDING", image: bases, expands: true, },
+//   { name: "PILLOWS", image: pillows, expands: true, },
+//   { name: "PROTECTORS", image: protectors, expands: false, },
+//   { name: "MATTRESS TOPPERS", image: mattressToppers, expands: false, },
+// ]
+
 const NavLower = (props) => {
   const [ open, setOpen ] = useState(false);
   const context = useContext(ConfigContext);
 
-  const toggleNav = () => {
-    setOpen(!open)
-    context.setNavOpen(!open)
+  const toggleNav = (isOpen) => {
+    setOpen(isOpen)
+    context.setNavOpen(isOpen)
   }
   return (
     <>
@@ -40,21 +50,23 @@ const NavLower = (props) => {
               display: flex; 
               justify-content: space-between; width: 83px; align-items: center;
             `}
-            onClick={toggleNav}
+            onMouseEnter={() => toggleNav(true)}
+            // onMouseLeave={() => toggleNav(false)}
           >
             PILLOWS
             <img height="3.82px" alt="open pillow" src={chevDown} />
             { open && 
               <div 
+                onMouseLeave={() => toggleNav(false)}
                 css={css`
                   position: absolute;
                   min-width: 400px;
                   left: 0;
-                  top: 60px;
+                  top: 25px;
                   width: calc(609px - 2rem);
                   height: calc(393px - 2rem);
                   background: white;
-                  margin: -2rem;
+                  // margin: -2rem;
                   display: flex;
                   justify-content: space-between;
                   color: black;
