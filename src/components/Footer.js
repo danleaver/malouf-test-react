@@ -1,3 +1,27 @@
+/** @jsxImportSource @emotion/react */
+import { css, jsx } from '@emotion/react';
+import styled  from '@emotion/styled';
+import news from '../assets/footer/news.png'
+import news2 from '../assets/footer/news2.png'
+import facebook from '../assets/footer/facebook.svg'
+import youtube from '../assets/footer/youtube.svg'
+import insta from '../assets/footer/insta.svg'
+import linkedin from '../assets/footer/linkedin.svg'
+import twitter from '../assets/footer/twitter.svg'
+
+const navLists = [
+    {title: "PRODUCTS", items: ["Furniture", "Bases", "Bedding", "Pillows", "Protectors", "Mattress Toppers"]},
+    {title: "COMPANY", items: ["About Us", "Impact", "Product Information", "Blog", "Military Healthcare", "Careers"]},
+    {title: "RETAILERS", items: ["Wholesale", "Retailer Login",]},
+]
+
+const social = [ facebook, insta, linkedin, twitter, youtube ] 
+
+const newsItems = [
+  {image: news, text: "Malouf™ Releases New E-Commerce Website Guide for Retail Partners" },
+  {image: news2, text: "Malouf™ Expands Photography and Video Studios to Boost In-House Capabilities" },
+]
+
 const Footer = () => (
   <>
     <div className="footer">
@@ -9,64 +33,83 @@ const Footer = () => (
               <div className="footer-1-certified" />
               <div className="footer-1-vert-line" />
               <div className="footer-1-follow-us">
-                <div>
+                <div css={css`font-family: Geograph-700; flex-shrink: 0;`}>
                   FOLLOW US
                 </div>
                 <div className="footer-1-follow-us-social">
-                  <img height="23px" src="assets/social/facebook.svg" />
-                  <img height="23px" src="assets/social/insta.svg" />
-                  <img height="23px" src="assets/social/linkedin.svg" />
-                  <img height="23px" src="assets/social/twitter.svg" />
-                  <img height="23px" src="assets/social/youtube.svg" />
+                  {social.map ((item, idx) => (
+                    <div
+                      css={css`
+                      margin: 0 0.5rem 0.25rem 0;
+                      
+                      @media(max-width: 767px) {
+                        margin-right: 0.4rem;
+                      }
+                      `}
+                    >
+                      <img height={idx == 4 ? "19px" : "23px"} src={item} />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
             <div className="footer-1-contact-us">
-              CONTACT US
+              <div css={css`font-family: Geograph-700;`} >
+                CONTACT US
+              </div>
               <div>
                 info@maloufsleep.com
               </div>
               <div>
-                (800)517-7179
+                (800) 517-7179
               </div>
             </div>
           </div>
           <div className="footer-line-mobile" />
           <div className="footer-nav">
-            <div className="footer-nav-products">
-              <div>PRODUCTS</div>
-              <div>Furniture</div>
-              <div>Bases</div>
-              <div>Bedding</div>
-              <div>Pillows</div>
-              <div>Protectors</div>
-              <div>Matress Toppers</div>
-            </div>
-            <div className="footer-nav-company">
-              <div>COMPANY</div>
-              <div>About Us</div>
-              <div>Impact</div>
-              <div>Product Information</div>
-              <div>Blog</div>
-              <div>Military/Healthcar</div>
-              <div>Careers</div>
-            </div>
-            <div className="footer-nav-retailers">
-              <div>RETAILERS</div>
-              <div>Wholesale</div>
-              <div>Retailer Login</div>
-            </div>
+            { navLists.map( list => (
+              <div className="footer-nav-list">
+                <p css={css`font-family: Geograph-Bold;`}>
+                  {list.title}
+                </p>
+                {list.items.map(item => (
+                  <p css={css`font-family: Geograph`}>{item}</p>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
         <div className="footer-line-main" />
         <div className="footer-news">
-          Latest News
-          <div className="footer-news-img">
-            <img src="./assets/news.png" />
-          </div>
-          Malouf™ Releases New E-Commerce Website Guide for Retail Partners
-          <div>
-            Read more &gt;
+          <p css={css`font-family: Geograph-Bold; margin: 0rem 0 0rem;`}>
+            LATEST NEWS
+          </p>
+          <div 
+            css={css`
+              display: flex; 
+              justify-content: space-between; 
+              align-items: flex-end;
+              width: 100%;
+
+              @media (min-width: 1124px) {
+                flex-direction: column;
+                align-items: center;
+
+              }
+            `}
+          >
+            <div>
+              <NewsItem content={newsItems[0]} />
+            </div>
+            <div
+              css={css`
+                @media (max-width: 689px) {
+                  display: none;
+                }
+              `}
+            >
+              <NewsItem content={newsItems[1]} />
+            </div>
           </div>
         </div>
       </div>
@@ -78,6 +121,42 @@ const Footer = () => (
         </div>
       </div>
     </div>
+  </>
+)
+
+const NewsItem = ({content}) => (
+  <>
+    <div 
+      css={css`
+        @media (min-width: 550px) {
+          display: flex;
+          justify-content: flex-start;
+          min-width: 300px;
+          max-width: 330px;
+          align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+          max-width: 400px;
+          margin-bottom: 1rem;
+        }
+      `}
+    >
+      <div css={css`margin-right: 1rem`}>
+        <img src={content.image} />
+      </div>
+      <div>
+        <p css={css`margin: 0.5rem; max-width: 250px; @media(max-width: 750) {max-width: 280px}`}>
+          {content.text}
+        </p>
+        <p css={css`margin: 0 .5rem; font-family: Mercury-Text-G2; font-style: italic; @media(max-width: 1123px) {display: none;}`} >
+          <strong>Read more &gt;</strong>
+        </p>
+      </div>
+    </div>
+    <div css={css`margin: 1rem; font-family: Mercury-Text-G2; font-style: italic; @media(min-width: 1124px) {display: none;}`}>
+      <strong>Read more &gt;</strong>
+    </div> 
   </>
 )
 

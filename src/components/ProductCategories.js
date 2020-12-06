@@ -24,7 +24,7 @@ const pics = [
   { image: bedding, title: "BEDDING" },
   { image: pillows, title: "PILLOWS"},
   { image: protectors, title: "PROTECTORS" },
-  { image: matressTopper, title: "MATRESS TOPPERS" },
+  { image: matressTopper, title: "MATTRESS TOPPERS" },
 ]
 
 function SliderMain() {

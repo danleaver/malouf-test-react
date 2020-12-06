@@ -36,6 +36,12 @@ code {
 
 }
 
+@font-face {
+  font-family: Geograph-700;
+  src: url(./assets/font/GeographTest-Bold.otf) format('opentype');
+
+}
+
 
 body {
   /* background-color: #1E1E1E; */
@@ -128,7 +134,8 @@ body {
 }
 
 .footer {
-  
+  font-size: 14px;
+  font-family: "Geograph"
 }
 
 .footer-1 {
@@ -142,7 +149,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 80px;
-  padding: 2rem 0;
+  padding: 2rem 0 0;
+
 }
 
 .footer-1-certified {
@@ -152,6 +160,9 @@ body {
   height: 74px;
 }
 
+.footer-1-follow-us {
+  width: 100px;
+}
 .footer-1-topflex {
   display: flex;
 }
@@ -159,71 +170,108 @@ body {
   width: 1px;
   height: 74px;
   background: black;
-  margin: 0 2rem;
+  margin: 0 1rem;
 }
 .footer-1-follow-us-social {
   display: flex;
   justify-content: space-between;
-  width: 150px;
+  align-items: center;
+  width: 120px;
+  margin-top: 0.5rem;
+  margin-right: 2rem;
 }
 
 .footer-line {
   height: 1px;
   
   background: black;
-  margin: 2rem;
+  /* margin: 2rem; */
+  margin: 2rem 1rem 0;
   
 }
 
 .footer-line-mobile {
   height: 1px;
   background: black;
-  margin: 2rem;
+  margin: 1rem 2rem;
   
 }
 
 .footer-line-main {
   height: 1px;
   background: black;
-  margin: 2rem;
+  margin: 1rem 2rem;
   
 }
 
 .footer-nav {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
-  margin: 2rem;
+  margin: 0 2rem;
+  line-height: 1px;
+  width: calc(100% - 2rem) ;
 }
-.footer-news {
-  margin: 2rem;
+
+.footer-nav-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 200px;
+  margin: 0.5rem 2rem 0.5rem 0;
+  flex-shrink: 0;
+}
+
+.footer-news {
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* height: 200px; */
+  /* max-width: 250px; */
+  
 }
 
 .footer-rights-reserved {
   margin: 2rem;
+  font-family: Mercury-Text-G2;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 754px) {
   .footer-line-mobile {
     display: none;
   }
   
   .footer-main-1 {
     display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  .footer-1-follow-us-social {
+    flex-wrap: wrap;
+    width: 95px;
+    justify-content: flex-start;
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1124px) {
   .footer-line-main {
     display: none;
   }
 
   .footer-full {
     display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* display: none; */
   }
+
+  .footer-nav {
+    flex-wrap: nowrap;
+  }
+  .footer-news {
+    margin: 2rem;
+  }
+
 }
 
 
@@ -919,18 +967,17 @@ body {
   background-size: cover;
   height: 26px;
   width: 26px;
-  display: none;
   margin-left: 0.5rem;
 
 }
 
 .products-in-the-room-list {
-  display: none;
+  
 
 }
 
 .products-in-the-room-list-main {
-  display: none;
+  
 }
 
 .products-in-the-room-product {
@@ -1167,7 +1214,7 @@ body {
 .sponsor-grid-item {
   width: 160px;
   height: 160px;
-  background: blue;
+  background: #1f1f1f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1181,7 +1228,6 @@ body {
   width: 187px;
   /* margin: -2rem; */
   transform: scale(0.6);
-  border: 1px solid red;
 }
 .sponsors-logo2 {
   background: url("./assets/esquire.png") center no-repeat;
