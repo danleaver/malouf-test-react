@@ -35,7 +35,7 @@ const NavMobile = (props) => {
   });
 
   const openSubMenu = (name) => {
-    if (name === false) {
+    if (name === false || open[name] === true) {
       setSubOpen(false) 
       setOpen({
         BASES: false,
@@ -75,13 +75,20 @@ const NavMobile = (props) => {
 
 const MenuItem = ({openSubMenu, open, subOpen, category}) => (
   <>
-    <NavMobileMenuItem category={category} open={open} subOpen={subOpen}>  
-      <NavMobileMenuItem category={category} open={open} subOpen={subOpen}> 
+    <NavMobileMenuItem
+      onClick={ category.expands ? () => openSubMenu(category.name) : undefined}
+      category={category} open={open} subOpen={subOpen}
+    >  
+      <NavMobileMenuItem
+        category={category} open={open} subOpen={subOpen}
+      > 
         <div className="nav-mobile-menu-item-icon">
-          <img alt={category.name} width="25px" src={category.image} />
+          <CategoryIcon category={category} open={open} url={category.image}/>
         </div>
         { !subOpen &&
-          <div className="nav-mobile-menu-item-title">
+          <div 
+            className="nav-mobile-menu-item-title"
+          >
             {category.name}
           </div>   
         }
@@ -117,6 +124,14 @@ const MenuItem = ({openSubMenu, open, subOpen, category}) => (
   </>
 )
 
+const CategoryIcon = styled.div`
+  background: url(${props => props.url}) center no-repeat;
+  background-size: contain;
+  height: 25px;
+  width: 25px;
+  ${props => props.open[props.category.name] && "filter: invert(1);"}
+`
+
 const NavMobileMenuItem = styled.div`
   display: flex;
   justify-content: space-between;
@@ -124,6 +139,8 @@ const NavMobileMenuItem = styled.div`
   padding-top: 0.8rem;
   padding-left: 0.8rem;
   ${props => props.subOpen && "justify-content: left;"}
+  ${props => props.open[props.category.name] && "background: white; color: black;"}
+  cursor: pointer;
 ` 
 
 export default NavMobile
