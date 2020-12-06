@@ -33,11 +33,17 @@ function SliderMain() {
   const [ slidePos, setSlidePos ] = useState(1);
   const [ currentSlides, setCurrentSlides] = useState([pics[pics.length - 1], pics[0], pics[1]])
   const mainDivRef = useRef(null)
-  const sliderRef = useRef([])
+  const sliderRef = useRef(null)
 
   const [ animateInRight, setAnimateInRight ] = useState(false)
   const [ animateInLeft, setAnimateInLeft ] = useState(false)
   const [ animateOver, setAnimateOver ] = useState(false)
+
+  const [hope, setHope] = useState(null)
+
+  useEffect(() => {
+    setHope(sliderRef.current.offsetWidth)
+  }, [])
 
   useEffect(() => {
     let tmpPos = wrapPos(slidePos)
@@ -64,6 +70,9 @@ function SliderMain() {
    
     //resets css
     let tmp = mainDivRef.current.offsetWidth
+    console.log("ref", sliderRef.current.offsetWidth)
+    console.log(tmp)
+    setHope(sliderRef.current.offsetWidth)
    }, [slidePos])
 
   useEffect(() => {
@@ -93,7 +102,7 @@ function SliderMain() {
       setAnimateInRight(false)
       setAnimateInLeft(false)
       setSlidePos(slidePos + n)
-    }, 330)
+    }, 400)
   }
 
   const chooseSlide = (k) => {
@@ -162,7 +171,7 @@ function SliderMain() {
           `}
         >
           {currentSlides.map ((slide) => (
-            <Slider animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}>
+            <Slider ref={sliderRef} hope={hope} animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}>
               <img alt="curr" src={slide.image}></img>
               <div //Description and Learn More Button
                 css={css`
@@ -336,8 +345,8 @@ const Slider = styled.div`
   align-items: flex-end;
   
   transition: transform .35s ease-in-out;
-  ${props => props.animateInRight && `transform: translateX(-${window.innerWidth - 190}px);`}
-  ${props => props.animateInLeft && `transform: translateX(+${window.innerWidth - 190}px);`}
+  ${props => props.animateInRight && `transform: translateX(-${props.hope}px);`}
+  ${props => props.animateInLeft && `transform: translateX(+${props.hope}px);`}
   ${props => props.animateOver && "transition: none; transform: translateX(0);"}
 
   & img {
