@@ -5,7 +5,7 @@ import BestSellers from './components/BestSellers';
 import Hero from './components/Hero';
 import InTheRoom from './components/InTheRoom';
 import Navbar from './components/navbar/Navbar';
-import ProductCategories from './components/ProductCategories';
+import ProductCategories from './components/product-categories/ProductCategories';
 import Reviews from './components/Reviews';
 import SleepPurpose from './components/SleepPurpose';
 import Sponsors from './components/Sponsors';

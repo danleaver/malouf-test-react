@@ -2,21 +2,13 @@
 import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState, useEffect, useRef } from 'react';
-import bedding from '../assets/product-categories/bedding.png'
-import bases from '../assets/product-categories/bases.png'
-import furniture from '../assets/product-categories/furniture.png'
-import matressTopper from '../assets/product-categories/matress-topper.png'
-import pillows from '../assets/product-categories/pillows.png'
-import protectors from '../assets/product-categories/protectors.png';
-import nextCat from '../assets/product-categories/nextCatGold.svg'
-
-const ProductCategories = () => (
-  <>
-    <div className="product-categories">
-      <SliderMain />
-    </div>
-  </>
-)
+import bedding from '../../assets/product-categories/bedding.png'
+import bases from '../../assets/product-categories/bases.png'
+import furniture from '../../assets/product-categories/furniture.png'
+import matressTopper from '../../assets/product-categories/matress-topper.png'
+import pillows from '../../assets/product-categories/pillows.png'
+import protectors from '../../assets/product-categories/protectors.png';
+import nextCat from '../../assets/product-categories/nextCatGold.svg'
 
 const pics = [
   { image: furniture, title: "FURNITURE"},
@@ -27,12 +19,11 @@ const pics = [
   { image: matressTopper, title: "MATTRESS TOPPERS" },
 ]
 
-function SliderMain() {
+const ProductCategories = () => {
   const [ indicatorTitle, setIndicatorTitle ] = useState(pics[0].title)
   const [ indicatorPos, setIndicatorPos ] = useState(1)
   const [ slidePos, setSlidePos ] = useState(1);
   const [ currentSlides, setCurrentSlides] = useState([pics[pics.length - 1], pics[0], pics[1], pics[2]])
-  const mainDivRef = useRef(null) //can delete this
   const sliderRef = useRef(null)
 
   const [ animateInRight, setAnimateInRight ] = useState(false)
@@ -50,7 +41,6 @@ function SliderMain() {
   window.onresize = () => {
     setOffset(sliderRef.current.offsetWidth)
   }
-
 
   useEffect(() => {
     let tmpPos = wrapPos(slidePos)
@@ -81,7 +71,6 @@ function SliderMain() {
     setSlidePos(tmpPos)
     setIndicatorPos(tmpPos)
     setAnimateOver(false)
-
   
     //// resets css
       let tmp = sliderRef.current.offsetWidth;
@@ -179,13 +168,13 @@ function SliderMain() {
         
         <Slider 
           offset={offset} animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}        
-          ref={mainDivRef}
           css={css`
             display: flex;
             position: relative;
             right: 85%;
             height: 51vw; 
             max-height: 735px;
+
             @media (max-width: 767px) {
               display: none;
             }
@@ -370,10 +359,7 @@ function SliderMain() {
         </div>
       </div>  
       <div className="product-categories-title">
-              {/* <div> */}
           Product Categories
-              {/* </div> */}
-          {/* <div className="product-categories-title-spacer"></div> */}
       </div>   
       
       {/* MOBILE */}
@@ -412,7 +398,6 @@ function SliderMain() {
                 onClick={() => chooseSlide(idx + 1)}
                 indicatorPos={indicatorPos} pos={idx + 1}
               /> 
-              
             ))}
           </div>
         </div>
@@ -430,6 +415,7 @@ const Indicator = styled.div`
   margin: 0 0.25rem;
   ${props=> props.pos === props.indicatorPos && "background: #1E1e1e;"}
 `
+
 const Slider = styled.div`
   display: flex;
   align-items: flex-end;
@@ -439,20 +425,6 @@ const Slider = styled.div`
   ${props => props.animateInLeft && `transform: translateX(+${props.offset}px);`}
   ${props => props.animateOver && "transition: none; transform: translateX(0);"}
 
-  & img {
-    @media (max-width: 1250px) {
-      // transform: scale(.74);
-      // height: 543;
-    }
-
-    @media (max-width: 1023px) {
-      // transform: scale(.66);
-    }
-
-    @media (max-width: 767px) {
-      // transform: scale(.423);
-      //I should set the height here and not transform.. transform is a terrible way of doing it
-    }
   }
 `
 
