@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from '@emotion/react';
-import styled from '@emotion/styled';
+import { Details, Indicator, Slider, SliderMobile, SliderActionMain, SliderAction,  SlidesContainer, Title, Icon, ChevLeft, ChevRight, DetailsLower, ProductTitle, LowerActionButton, VertLine } from "./productCategoryStyles"
 import { useState, useEffect, useRef } from 'react';
 import bedding from '../../assets/product-categories/bedding.png'
 import bases from '../../assets/product-categories/bases.png'
@@ -90,7 +90,7 @@ const ProductCategories = () => {
     return pos
   }
 
-  const nextSlide = (n) => {
+  const nextSlide = (n, mobile) => {
     if (n === -1) {
       setAnimateInLeft(true)
     } else { 
@@ -104,7 +104,7 @@ const ProductCategories = () => {
       setAnimateInRight(false)
       setAnimateInLeft(false)
       setSlidePos(slidePos + n)
-    }, 400)
+    }, mobile ? 0 : 400)
   }
 
   const chooseSlide = (k) => {
@@ -123,6 +123,7 @@ const ProductCategories = () => {
       css={css`
         overflow-x: hidden;
 
+        margin-top: -10vw;
         @media (max-width: 767px) {
           margin-top: -2rem;
         }
@@ -137,131 +138,25 @@ const ProductCategories = () => {
           }
         `}
       >
-        <Slider2
-          offset={offset} animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}
-          css={css`
-            display: flex;
-            height: 80vw;
-            position: relative;
-            right: calc(50% + 10vw);
-
-            @media (min-width: 768px) {
-              display: none;
-            }
-          `}
-        > 
+        <SliderMobile> 
           {currentSlides.map((slide, idx) => (
             <>              
-              <div 
-                ref={sliderRef}
-                css={css`
-                  height: 100%;
-                  width: 100%;
-                  display: flex;
-              `}>
+              <SlidesContainer>
                 <img height="100%" src={slide.image} />
                 <div css={css`height: 100%; width: ${idx === 0 ? "20vw" : "10vw"} `}/>
-              </div>
+              </SlidesContainer>
             </>
           ))} 
-        </Slider2>
+        </SliderMobile>
         
         <Slider 
           offset={offset} animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}        
-          css={css`
-            display: flex;
-            position: relative;
-            right: 85%;
-            height: 51vw; 
-            max-height: 735px;
-
-            @media (max-width: 767px) {
-              display: none;
-            }
-          `}
         >
           {currentSlides.map ((slide, idx) => (
             <>              
-            <div 
-              ref={sliderRef}
-              css={css`
-                height: 100%;
-                width: 100%;
-                display: flex;
-            `}>
+            <SlidesContainer ref={sliderRef}>
               <img height="100%" src={slide.image} />
-            <div //Description and Learn More Button
-                css={css`
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: space-between;
-                  padding: 7rem 5rem;
-                  margin: 3rem 6rem;
-                  min-width: 50rem;
-               
-                  max-height: 450px;
-                 
-                  @media (max-width: 1850px) {
-                    padding: 6rem;
-                    margin: 4rem 4rem 4rem 8rem;
-                    min-width: 40rem;            
-                  }
-
-                  @media (max-width: 1750px) {
-                    margin: 4rem;
-                  }
-
-                  @media (max-width: 1650px) {
-                    min-width: 35rem;
-                  }
-
-                  @media (max-width: 1550px) {
-                    min-width: 30rem;
-
-                  }
-                  @media (max-width: 1500px) {
-                    padding: 5rem;
-                    height: 450px;
-                    min-width: 450px;
-                  }
-
-                  @media (max-width: 1400px) {
-                    margin: 15rem 5rem 2rem 4rem;
-                    padding: 1rem;
-                    height: 300px;
-                    min-width: 500px;
-                  }
-
-                  @media (max-width: 1300px) {
-                    min-width: 450px;
-                  }
-
-                  @media (max-width: 1160px) {
-                    margin: 12rem 5rem 2rem 4rem;
-                    min-width: 400px;
-                  }
-
-                  @media (max-width: 1050px) {
-                    margin: 8rem 6rem 2rem 4rem;
-                    min-width: 330px;
-                  }
-
-                  @media (max-width: 950px) {
-                    margin: 7rem 6rem 2rem 2rem;
-                    min-width: 280px;
-                  }
-
-                  @media (max-width: 868px) {
-                    margin: 7rem 4rem 2rem 2rem;
-                    height: 250px;
-                  }
-                  
-                  @media (max-width: 767px) {
-                    display: none;
-                  }
-
-                `}
-              >
+              <Details>
                 <div 
                   css={css`
                     display: flex;
@@ -321,11 +216,11 @@ const ProductCategories = () => {
                 >
                   Here is copy that provides a description of this feel and material. Also brief mention of how our material is different. Here is copy that provides a description of this feel and material. Also brief mention of how our material is different. 
                 </div>
-                <div className="product-categories-lower-action-button">
+                <LowerActionButton>
                   Learn More &nbsp; ⟶
-                </div>
-              </div>
-             </div>
+                </LowerActionButton>
+              </Details>
+             </SlidesContainer>
             </>
           ))}
         </Slider>
@@ -338,10 +233,10 @@ const ProductCategories = () => {
           margin: 2rem;
         `}
       >
-        <div className="product-categories-slider-action-main">
+        <SliderActionMain>
           { [...Array(6)].map( (tmp, idx) => (
             <>
-              <div 
+              <Icon 
                 onClick={() => chooseSlide(idx + 1)}
                 css={css`
                   ${(indicatorPos - 1 === idx) && "filter: none;"}
@@ -349,43 +244,36 @@ const ProductCategories = () => {
                     transform: scale(1.1);
                   }
                 `}
-                className="product-categories-icon"
               />
               {idx !== 5 && 
-                <div className="product-categories-vert-line" />
+                <VertLine />
               }
             </>
           ))}
-        </div>
+        </SliderActionMain>
       </div>  
-      <div className="product-categories-title">
+      <Title>
           Product Categories
-      </div>   
+      </Title>   
       
       {/* MOBILE */}
-      <div className="product-categories-mobile-wrapper">      
+      <div>      
         {/* for mobile slider */}
-        <div className="product-categories-slider-action">
-          <div css={css`cursor: auto;`} className="product-categories-icon">
-          </div>
-          <div className="product-categories-chev-left" onClick={() => nextSlide(-1)} />
-          <div 
-            css={css`filter: none; cursor: auto;`}
-            className="product-categories-icon"
-          >
-          </div>
-          <div className="product-categories-chev-right" onClick={() => nextSlide(1)} />
-          <div css={css`cursor: auto;`} className="product-categories-icon">
-          </div>
-        </div>
+        <SliderAction>
+          <Icon css={css`cursor: auto;`} />
+          <ChevLeft onClick={() => nextSlide(-1, true)} />
+          <Icon css={css`filter: none; cursor: auto;`} />
+          <ChevRight onClick={() => nextSlide(1, true)} />
+          <Icon css={css`cursor: auto;`} />
+        </SliderAction>
 
         {/* MOBILE title, learn more, indicators */}
-        <div className="product-categories-details-lower">
-          <div className="product-categories-product-title">{indicatorTitle}</div>
+        <DetailsLower>
+          <ProductTitle>{indicatorTitle}</ProductTitle>
           <div css={css`padding: 1.5rem`}>
-            <div className="product-categories-lower-action-button">
+            <LowerActionButton>
               Learn More &nbsp; ⟶
-            </div>
+            </LowerActionButton>
           </div>
           <div 
             css={css`
@@ -400,39 +288,10 @@ const ProductCategories = () => {
               /> 
             ))}
           </div>
-        </div>
+        </DetailsLower>
       </div>
     </div>
   );
 }
-
-const Indicator = styled.div`
-  background: grey;
-  border-radius: 50%;
-  height: 14px;
-  width: 14px;
-  cursor: pointer;
-  margin: 0 0.25rem;
-  ${props=> props.pos === props.indicatorPos && "background: #1E1e1e;"}
-`
-
-const Slider = styled.div`
-  display: flex;
-  align-items: flex-end;
-  
-  transition: transform .35s ease-in-out;
-  ${props => props.animateInRight && `transform: translateX(-${props.offset}px);`}
-  ${props => props.animateInLeft && `transform: translateX(+${props.offset}px);`}
-  ${props => props.animateOver && "transition: none; transform: translateX(0);"}
-
-  }
-`
-
-const Slider2 = styled.div`
-  transition: transform .35s ease-in-out;
-  ${props => props.animateInRight && `transform: translateX(-${props.offset}px);`}
-  ${props => props.animateInLeft && `transform: translateX(+${props.offset}px);`}
-  ${props => props.animateOver && "transition: none; transform: translateX(0);"}
-`
 
 export default ProductCategories
