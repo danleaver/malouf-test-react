@@ -1265,6 +1265,10 @@ body {
   font-family: "Mercury-Text-G2";
   line-height: 33.3px;
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -1273,16 +1277,7 @@ body {
   justify-content: center;
 }
 .we-understand-logo {
-  background: url();
-  margin: 3rem;
-  /* padding: 3rem; */
-  border-radius: 50%;
-  border: 1px solid white;
-  height: 50px;
-  width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
 }
 
 @media (min-width: 768px) {
@@ -1303,6 +1298,13 @@ body {
 @media (min-width: 1201px) {
   .we-understand {
     padding: 19rem 24rem 26rem;
+    /* width: 200px; */
+    /* flex: 1; */
+  }
+
+  .we-understand-text {
+    /* display: none; */
+    width: 600px;
   }
 }
 

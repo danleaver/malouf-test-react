@@ -133,7 +133,7 @@ function SliderMain() {
     <div
       css={css`
         overflow-x: hidden;
-        margin-top: -13%;
+        margin-top: -10%;
 
         @media (max-width: 1024px) {
           margin-top: -18%;
@@ -152,10 +152,15 @@ function SliderMain() {
       <div
         css={css`
           position: relative;
-          left: -100%;
+          left: -70%;
+          // max-width: 1600px;
+
+          @media (min-width: 1750px) {
+            left: -75%;
+          }
 
           @media (max-width: 1250px) {
-            left: -110%;
+            left: -70%;
           }
 
           @media (max-width: 875px) {
@@ -192,7 +197,8 @@ function SliderMain() {
                   flex-direction: column;
                   justify-content: space-between;
                   padding: 5rem;
-                  margin: 5rem 5rem 5rem 5rem;
+                  margin: 4rem;
+                  min-width: 300px;
                   max-width: 400px;
                   height: 450px;
        
@@ -200,6 +206,7 @@ function SliderMain() {
                     margin: 8rem 0rem;
                     padding: 1rem;
                     height: 300px;
+                    min-width: 400px;
                   }
 
                   @media (max-width: 1000px) {
