@@ -299,7 +299,8 @@ body {
 /* HERO */
 .hero {
   color: white;
-  font-family: "Geograph"
+  font-family: "Geograph";
+  width: 100%;
 }
 
 .hero-chev-mobile {
@@ -331,6 +332,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 .hero-slider-image2 {
@@ -637,6 +639,12 @@ body {
   color: white;
 }
 
+@media(min-width: 1024px) {
+  .nav-mobile-menu {
+    display: none;
+  }
+}
+
 .nav-mobile-menu-top {
   border-top: 1px solid white;
   display: flex;
@@ -810,7 +818,7 @@ body {
 }
 
 .product-categories-icon {
-  background: url(./assets/product-categories/SVG/furniture.svg) center no-repeat;
+  background: url(./assets/product-categories/icons/furniture.svg) center no-repeat;
   background-size: cover;
   height: 50px;
   width: 53px;

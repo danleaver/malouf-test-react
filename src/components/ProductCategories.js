@@ -133,70 +133,18 @@ function SliderMain() {
     <div
       css={css`
         overflow-x: hidden;
-        // margin-top: -10%;
-        margin-top: -10vw;
-        // z-index: 998;
-
-        @media (max-width: 1400px) {
-          // margin-top: -8rem;
-          
-        }
-
-        @media (max-width: 1023px) {
-          // margin-top: -6rem;
-        }
 
         @media (max-width: 767px) {
           margin-top: -2rem;
         }
-
-
-        
       `}
     >
       <div
         css={css`
           position: relative;
-          // left: -75rem;
-          // max-width: 1600px;
-
-          @media (min-width: 1550px) {
-            // left: -75%;
-          }
-
-          @media (min-width: 1700px) {
-            // left: -75%;
-          }
-
-          @media (min-width: 1850px) {
-            // left: -80%;
-          }
-
-          @media (max-width: 1400px) {
-            // left: -65rem;
-          }
-
-          @media (max-width: 1300px) {
-            // left: -58rem;
-          }
-
-          @media (max-width: 1150px) {
-            // left: -57rem;
-          }
-
-          @media (max-width: 1023px) {
-            // left: -50rem;
-          }
-
-          @media (max-width: 868px) {
-            // left: 0rem;
-          }
 
           @media (max-width: 767px) {
-            // left: 25%;
-            // left: -13rem;
-            margin-bottom: -4rem;
-            left: -0%;
+             margin-bottom: -4rem;
           }
         `}
       >
@@ -234,25 +182,12 @@ function SliderMain() {
           ref={mainDivRef}
           css={css`
             display: flex;
-            // width: 300%;
             position: relative;
             right: 85%;
-
-            height: 51vw; //this gets 1442 to 527x735
+            height: 51vw; 
             max-height: 735px;
-            @media (max-width: 1500px) {
-              right: 85%;
-            } 
-            @media (max-width: 1400px) {
-              right: 85%;
-            }
-            @media (max-width: 875px) {
-              // width: 81%;
-            }
-
             @media (max-width: 767px) {
               display: none;
-              
             }
           `}
         >
@@ -266,10 +201,6 @@ function SliderMain() {
                 display: flex;
             `}>
               <img height="100%" src={slide.image} />
-            
-          
-
-
             <div //Description and Learn More Button
                 css={css`
                   display: flex;
@@ -278,50 +209,28 @@ function SliderMain() {
                   padding: 7rem 5rem;
                   margin: 3rem 6rem;
                   min-width: 50rem;
-                  // max-width: 500px;
+               
                   max-height: 450px;
                  
                   @media (max-width: 1850px) {
                     padding: 6rem;
                     margin: 4rem 4rem 4rem 8rem;
-                    min-width: 40rem;
-                    // max-width: 500px;
-                    max-height: 450px;
-                    // width: 100%;
-                    // display: none;
+                    min-width: 40rem;            
                   }
 
                   @media (max-width: 1750px) {
-                    padding: 6rem;
                     margin: 4rem;
-                    min-width: 40rem;
-                    // max-width: 500px;
-                    max-height: 450px;
-                    // width: 100%;
-                    // display: none;
                   }
 
                   @media (max-width: 1650px) {
-                    padding: 6rem;
-                    margin: 4rem;
                     min-width: 35rem;
-                    // max-width: 500px;
-                    max-height: 450px;
-                    // width: 100%;
-                    // display: none;
                   }
 
                   @media (max-width: 1550px) {
-                    padding: 6rem;
-                    margin: 4rem;
                     min-width: 30rem;
-                    // max-width: 500px;
-                    max-height: 450px;
-                    // width: 100%;
-                    // display: none;
+
                   }
                   @media (max-width: 1500px) {
-                    margin:4rem;
                     padding: 5rem;
                     height: 450px;
                     min-width: 450px;
@@ -355,7 +264,6 @@ function SliderMain() {
 
                   @media (max-width: 868px) {
                     margin: 7rem 4rem 2rem 2rem;
-                    min-width: 280px;
                     height: 250px;
                   }
                   
@@ -439,10 +347,6 @@ function SliderMain() {
           display: flex;
           justify-content: center;
           margin: 2rem;
-          
-          @media (max-width: 1200px) {
-            // margin: -3rem 0 3rem;
-          }
         `}
       >
         <div className="product-categories-slider-action-main">

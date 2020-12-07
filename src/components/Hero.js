@@ -133,6 +133,11 @@ const Image = (props) => (
 const HeroSliderImage = styled.div`
   background: url(${props => props.image}) left no-repeat;
   //more in index.css
+
+  @media (min-width: 1024px) {
+    background-position: center;
+    background-size: cover;
+  }
 `
 
 
