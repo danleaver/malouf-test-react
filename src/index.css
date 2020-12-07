@@ -378,7 +378,7 @@ body {
 
 .hero-slider-action-wide-title {
   padding: 0 1rem;
-  font-family: "Geograph-500"
+  font-family: "Geograph-Bold"
 }
 
 .hero-slider-action-wide-learn {
@@ -394,6 +394,12 @@ body {
   padding: 1rem;
   line-height: 22px;
   /* max-width: 50%; */
+}
+
+.hero-slider-placeholder-text {
+  font-family: "Geograph-500";
+  
+  
 }
 
 .hero-up-next-full-right {
@@ -481,9 +487,7 @@ body {
     padding-right: 5%;
   }
 
-  .hero-slider-placeholder-text {
-/* just leaving this here for fun */
-  }
+
 
   .hero-slider-action-wide {
     min-width: calc(393px - 4rem);
@@ -530,7 +534,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1e1e1e;
+  background: black;
   color: white;
   height: 2.5rem;
   position: fixed;
@@ -540,6 +544,14 @@ body {
   padding: 0 1rem;
   width: calc(100% - 2rem);
   font-family: "Geograph-500";
+
+
+}
+
+@media(min-width: 768px) {
+  .nav-lower {
+    background: #1e1e1e;
+  }
 }
 
 .nav-lower-hamburger {
@@ -600,9 +612,10 @@ body {
   height: 100vh;
   width: calc(100% - 6rem);
   left: 6rem;
-  top: 5.5rem;
+  top: 5rem;
   color: black;
   padding: 2rem;
+  font-family: Geograph-500;
 }
 
 .nav-mobile-expanded-list {
@@ -648,7 +661,11 @@ body {
 }
 
 .nav-mobile-menu-plus {
+  font-family: Geograph;
   padding-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-mobile-menu-bottom {
@@ -1284,9 +1301,9 @@ body {
 
 
 .we-understand {
-  /* background: #1E1E1E;
+  background: #1E1E1E;
   color: white;
-  padding: 5rem 3.75rem; */
+  padding: 5rem 3.75rem;
   text-align: center;
   font-family: "Mercury-Text-G2";
   line-height: 33.3px;
@@ -1295,12 +1312,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.we-understand-wrapper {
-  background: #1E1E1E;
-  color: white;
-  padding: 5rem 3.75rem;
 }
 
 .we-understand-lower {

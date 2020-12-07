@@ -10,11 +10,13 @@ import protectors from '../../assets/nav-mobile/SVG/protectors.svg';
 import mattressToppers from '../../assets/nav-mobile/SVG/mattress-toppers.svg';
 import wholesale from '../../assets/nav-mobile/SVG/wholesale.svg';
 import retailer from '../../assets/nav-mobile/SVG/retailer.svg';
+import closeX  from '../../assets/nav-mobile/SVG/close-x.svg';
+import closeX2 from '../../assets/nav-mobile/SVG/close-x2.svg'
 
 const categories = [
   { name: "FURNITURE", image: furniture, expands: false, },
-  { name: "BASES", image: bedding, expands: true, },
-  { name: "BEDDING", image: bases, expands: true, },
+  { name: "BASES", image: bases, expands: true, },
+  { name: "BEDDING", image: bedding, expands: true, },
   { name: "PILLOWS", image: pillows, expands: true, },
   { name: "PROTECTORS", image: protectors, expands: false, },
   { name: "MATTRESS TOPPERS", image: mattressToppers, expands: false, },
@@ -96,18 +98,20 @@ const MenuItem = ({openSubMenu, open, subOpen, category}) => (
       <div />
       { category.expands && 
         open[category.name] === true
-          ? <div class="nav-mobile-menu-plus" onClick={() => openSubMenu(category.name)}> { category.expands && "x" } </div>
+          ? <div class="nav-mobile-menu-plus" onClick={() => openSubMenu(category.name)}>
+              { category.expands && <img src={closeX2} height="10px"/>} 
+             </div>
           : <div class="nav-mobile-menu-plus" onClick={() => openSubMenu(category.name)}> { category.expands && "+" } </div>
       }
     </NavMobileMenuItem>
     { open[category.name] === true && 
       <div className="nav-mobile-expanded">
-        <div className="close" onClick={() => openSubMenu(false)}>
-          X Close
+        <div css={css`display: flex; align-items: center; margin-bottom: 2.5rem;`} onClick={() => openSubMenu(false)}>
+          <img src={closeX} height="19px"/> &nbsp;&nbsp;Close
         </div>
         <div>
-          <div style={{textDecoration: 'underline'}}>{category.name} 101</div>
-          <div style={{textDecoration: 'underline'}}>ALL PILLOWS</div>
+          <p style={{textDecoration: 'underline'}}>{category.name} 101</p>
+          <p style={{textDecoration: 'underline'}}>ALL {category.name}</p>
           <div className="nav-mobile-expanded-list">
             <div>MEMORY FOAM</div>
             <div>ACTIVEDOUGH</div>
@@ -136,11 +140,13 @@ const NavMobileMenuItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 0.8rem;
-  padding-left: 0.8rem;
+  padding: 0.5rem 0.5rem 0.5rem;
+  
   ${props => props.subOpen && "justify-content: left;"}
   ${props => props.open[props.category.name] && "background: white; color: black;"}
   cursor: pointer;
+  font-family: Geograph-500;
+  font-size: 14px;
 ` 
 
 export default NavMobile
