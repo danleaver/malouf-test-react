@@ -133,64 +133,151 @@ function SliderMain() {
     <div
       css={css`
         overflow-x: hidden;
-        margin-top: -10%;
+        // margin-top: -10%;
+        margin-top: -10rem;
 
-        @media (max-width: 1024px) {
-          margin-top: -18%;
+        @media (max-width: 1400px) {
+          margin-top: -8rem;
+          
         }
 
-        @media (max-width: 900px) {
-          margin-top: -25%;
+        @media (max-width: 1023px) {
+          margin-top: -6rem;
         }
 
         @media (max-width: 767px) {
-          margin-top: -35%;
+          margin-top: -2rem;
         }
+
+
         
       `}
     >
       <div
         css={css`
           position: relative;
-          left: -70%;
+          left: -75rem;
           // max-width: 1600px;
 
-          @media (min-width: 1750px) {
+          @media (min-width: 1550px) {
             left: -75%;
           }
 
-          @media (max-width: 1250px) {
-            left: -70%;
+          @media (min-width: 1700px) {
+            left: -75%;
           }
 
-          @media (max-width: 875px) {
-            left: -93%;
+          @media (min-width: 1850px) {
+            left: -80%;
+          }
+
+          @media (max-width: 1400px) {
+            left: -65rem;
+          }
+
+          @media (max-width: 1300px) {
+            left: -58rem;
+          }
+
+          @media (max-width: 1150px) {
+            left: -57rem;
+          }
+
+          @media (max-width: 1023px) {
+            left: -50rem;
+          }
+
+          @media (max-width: 868px) {
+            left: 0rem;
           }
 
           @media (max-width: 767px) {
-            left: -70%;
+            // left: 25%;
+            // left: -13rem;
+            margin-bottom: -4rem;
+            left: -0%;
           }
         `}
       >
+        <Slider2
+          offset={offset} animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}
+          css={css`
+            display: flex;
+            height: 80vw;
+            position: relative;
+            right: calc(50% + 10vw);
+
+            @media (min-width: 768px) {
+              display: none;
+            }
+          `}
+        > 
+          {currentSlides.map((slide, idx) => (
+            <>              
+              <div 
+                ref={sliderRef}
+                css={css`
+                  height: 100%;
+                  width: 100%;
+                  display: flex;
+              `}>
+                <img height="100%" src={slide.image} />
+                <div css={css`height: 100%; width: ${idx === 0 ? "20vw" : "10vw"} `}/>
+              </div>
+            </>
+          ))} 
+        </Slider2>
+        
         <div 
           ref={mainDivRef}
           css={css`
             display: flex;
             width: 300%;
-            justify-content: center;
+            position: relative;
+            left: -14rem;
+            // top: 5rem;
+            justify-content: flex-start;
+            // justify-content: center;
+            // align-items: center;
+            // height: 100%;
 
+            @media (max-width: 1400px) {
+              width: 320%;
+            }
             @media (max-width: 875px) {
-              width: 260%;
+              width: 350%;
             }
 
             @media (max-width: 767px) {
-              width: 200%;
+              display: none;
+              
             }
           `}
         >
-          {currentSlides.map ((slide) => (
+          {currentSlides.map ((slide, idx) => (
             <Slider ref={sliderRef} offset={offset} animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}>
-              <img alt="curr" src={slide.image}></img>
+              {/* <img alt="curr" src={slide.image}></img> */}
+              <div 
+                css={css`
+                  background: url(${slide.image}) center no-repeat; background-size: contain; width: 498px; height: 735px;
+                  // flex-shrink: 0;
+
+                  @media (max-width: 1400px) {
+                    width: 382px;
+                    height: 533px;
+                  }
+                  @media (max-width: 1023px) {
+                    width: 321px;
+                    height: 484px;
+                  }
+
+                  @media (max-width: 768px) {
+                    height: 311px;
+                    width: 204px;
+                  }
+                `} 
+              />
+
               <div //Description and Learn More Button
                 css={css`
                   display: flex;
@@ -198,21 +285,34 @@ function SliderMain() {
                   justify-content: space-between;
                   padding: 5rem;
                   margin: 4rem;
-                  min-width: 300px;
-                  max-width: 400px;
+                  min-width: 450px;
+                  max-width: 450px;
                   height: 450px;
        
-                  @media (max-width: 1250px) {
-                    margin: 8rem 0rem;
+                  @media (max-width: 1400px) {
+                    margin: 8rem 0 2rem 4rem;
                     padding: 1rem;
                     height: 300px;
                     min-width: 400px;
                   }
 
-                  @media (max-width: 1000px) {
-                    margin: 10rem -3rem;
+                  @media (max-width: 1300px) {
+                    // width: 500px;
+                    margin: 8rem 4rem 2rem 4rem;
+                    
                   }
 
+                  @media (max-width: 1023px) {
+                    margin: 8rem 2rem 2rem;
+                    width: 250px;
+                  }
+
+                  @media (max-width: 868px) {
+                    margin: 8rem 1rem 2rem;
+                    // max-width: 200px;
+                    min-width: 280px;
+                  }
+                  
                   @media (max-width: 767px) {
                     display: none;
                   }
@@ -241,7 +341,7 @@ function SliderMain() {
                   css={css`
                     margin: 2rem 0;
 
-                    @media (max-width: 1250px) {
+                    @media (max-width: 1400px) {
                       display: none;
                     }
                   `}
@@ -252,14 +352,30 @@ function SliderMain() {
                 <div
                   css={css`
                     font-size: 26px;
-                    font-family: "Geograph-500";
+                    font-family: "Geograph-Bold";
                     line-height: 28px;
                     margin: -1.5rem 0 0;
+
+                    @media (max-width: 1023px) {
+                      font-size: 20px;
+                    }  
                   `}
                 >       
                   {slide.title}
                 </div>
-                <div css={css`font-family: Mercury-Text-G2`}>
+                <div
+                  css={css`
+                    font-family: Mercury-Text-G2;
+
+                    @media (max-width: 1023px) {
+                      max-width: 350px;
+                    }
+
+                    @media (max-width: 868px) {
+                      max-width: 280px;
+                    }
+                  `}
+                >
                   Here is copy that provides a description of this feel and material. Also brief mention of how our material is different. Here is copy that provides a description of this feel and material. Also brief mention of how our material is different. 
                 </div>
                 <div className="product-categories-lower-action-button">
@@ -278,7 +394,7 @@ function SliderMain() {
           margin: 2rem;
           
           @media (max-width: 1200px) {
-            margin: -3rem 0 3rem;
+            // margin: -3rem 0 3rem;
           }
         `}
       >
@@ -303,8 +419,11 @@ function SliderMain() {
         </div>
       </div>  
       <div className="product-categories-title">
+              {/* <div> */}
           Product Categories
-        </div>   
+              {/* </div> */}
+          {/* <div className="product-categories-title-spacer"></div> */}
+      </div>   
       
       {/* MOBILE */}
       <div className="product-categories-mobile-wrapper">      
@@ -371,18 +490,26 @@ const Slider = styled.div`
 
   & img {
     @media (max-width: 1250px) {
-      transform: scale(.74);
+      // transform: scale(.74);
+      // height: 543;
     }
 
     @media (max-width: 1023px) {
-      transform: scale(.66);
+      // transform: scale(.66);
     }
 
     @media (max-width: 767px) {
-      transform: scale(.423);
+      // transform: scale(.423);
       //I should set the height here and not transform.. transform is a terrible way of doing it
     }
   }
+`
+
+const Slider2 = styled.div`
+  transition: transform .35s ease-in-out;
+  ${props => props.animateInRight && `transform: translateX(-${props.offset}px);`}
+  ${props => props.animateInLeft && `transform: translateX(+${props.offset}px);`}
+  ${props => props.animateOver && "transition: none; transform: translateX(0);"}
 `
 
 export default ProductCategories
