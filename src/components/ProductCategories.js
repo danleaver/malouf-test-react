@@ -31,48 +31,61 @@ function SliderMain() {
   const [ indicatorTitle, setIndicatorTitle ] = useState(pics[0].title)
   const [ indicatorPos, setIndicatorPos ] = useState(1)
   const [ slidePos, setSlidePos ] = useState(1);
-  const [ currentSlides, setCurrentSlides] = useState([pics[pics.length - 1], pics[0], pics[1]])
-  const mainDivRef = useRef(null)
+  const [ currentSlides, setCurrentSlides] = useState([pics[pics.length - 1], pics[0], pics[1], pics[2]])
+  const mainDivRef = useRef(null) //can delete this
   const sliderRef = useRef(null)
 
   const [ animateInRight, setAnimateInRight ] = useState(false)
   const [ animateInLeft, setAnimateInLeft ] = useState(false)
   const [ animateOver, setAnimateOver ] = useState(false)
 
-  const [hope, setHope] = useState(null)
+  const [offset, setOffset] = useState(0)
 
   useEffect(() => {
-    setHope(sliderRef.current.offsetWidth)
+    setTimeout(() => {
+      setOffset(sliderRef.current.offsetWidth)
+    }, 500)
   }, [])
+
+  window.onresize = () => {
+    setOffset(sliderRef.current.offsetWidth)
+  }
+
 
   useEffect(() => {
     let tmpPos = wrapPos(slidePos)
 
     // sets neighbors
+    let thirdSlide = tmpPos + 1
     let nextSlide = tmpPos
     let prevSlide = tmpPos - 2
 
     if(tmpPos === pics.length){
       nextSlide = 0
+      thirdSlide = 1
     } else if (tmpPos === 1){
       prevSlide = pics.length - 1
+    }
+
+    if (tmpPos === pics.length - 1) {
+      thirdSlide = 0
     }
 
     setCurrentSlides([
       pics[prevSlide],
       pics[tmpPos - 1],
-      pics[nextSlide]
+      pics[nextSlide],
+      pics[thirdSlide]
     ])
 
     setSlidePos(tmpPos)
     setIndicatorPos(tmpPos)
     setAnimateOver(false)
-   
-    //resets css
-    let tmp = mainDivRef.current.offsetWidth
-    console.log("ref", sliderRef.current.offsetWidth)
-    console.log(tmp)
-    setHope(sliderRef.current.offsetWidth)
+
+  
+    //// resets css
+      let tmp = sliderRef.current.offsetWidth;
+
    }, [slidePos])
 
   useEffect(() => {
@@ -171,7 +184,7 @@ function SliderMain() {
           `}
         >
           {currentSlides.map ((slide) => (
-            <Slider ref={sliderRef} hope={hope} animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}>
+            <Slider ref={sliderRef} offset={offset} animateOver={animateOver} animateInLeft={animateInLeft} animateInRight={animateInRight}>
               <img alt="curr" src={slide.image}></img>
               <div //Description and Learn More Button
                 css={css`
@@ -345,8 +358,8 @@ const Slider = styled.div`
   align-items: flex-end;
   
   transition: transform .35s ease-in-out;
-  ${props => props.animateInRight && `transform: translateX(-${props.hope}px);`}
-  ${props => props.animateInLeft && `transform: translateX(+${props.hope}px);`}
+  ${props => props.animateInRight && `transform: translateX(-${props.offset}px);`}
+  ${props => props.animateInLeft && `transform: translateX(+${props.offset}px);`}
   ${props => props.animateOver && "transition: none; transform: translateX(0);"}
 
   & img {
