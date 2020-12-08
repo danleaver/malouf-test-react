@@ -186,6 +186,7 @@ export const SlidesContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
+  ${props => props.idx === 2 && "cursor: zoom-in"}
 `
 
 export const SliderMobile = styled.div`

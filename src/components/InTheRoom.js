@@ -11,7 +11,7 @@ const InTheRoom = () => {
   const [ open, setOpen ] = useState(false);
 
   return (
-  <>
+  
     <div className="grayspace">
       <div className="products-in-the-room">
         <div className="products-in-the-room-menu" onClick={() => setOpen(!open)}>
@@ -41,28 +41,26 @@ const InTheRoom = () => {
         </div>
       </div>
     </div>
-  </>
-)
-
+  )
 }
 
 const Product = (props) => {
 
   return (
- <div className="products-in-the-room-product">
-  <div className="products-in-the-room-product-container">
-    <div className="products-in-the-room-product-gray">
-    </div>
-    <div className="products-in-the-room-product-right">
-      <div>
-        Testing 
+    <div className="products-in-the-room-product">
+      <div className="products-in-the-room-product-container">
+        <div className="products-in-the-room-product-gray">
+        </div>
+        <div className="products-in-the-room-product-right">
+          <div>
+            Testing 
+          </div>
+          <div>
+            $809.99
+          </div>
+        </div>
       </div>
-      <div>
-        $809.99
-      </div>
     </div>
-  </div>
-</div>
   )
   
 }

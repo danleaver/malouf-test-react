@@ -793,6 +793,7 @@ a:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 .products-in-the-room-icon-open {
   background: url(./assets/SVG/products-room-close.svg) center no-repeat;
@@ -824,6 +825,7 @@ a:active {
   background: #1f1f1f;
   color: white;
   width: calc(320px - 3rem);
+  cursor: pointer;
 }
 
 .products-in-the-room-product-gray {

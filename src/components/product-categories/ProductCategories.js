@@ -73,11 +73,8 @@ const ProductCategories = () => {
     setIndicatorPos(tmpPos)
     setAnimateOver(false)
 
-    
-
     //// resets css
       let tmp = sliderRef.current.offsetWidth;
-      
       
    }, [slidePos])
 
@@ -93,8 +90,6 @@ const ProductCategories = () => {
         slidesRemain > 0 ? nextSlide(1) : nextSlide(-1)
       } 
   }, [animateOver])
-
-    
  
   const wrapPos = (pos) => {
     if (pos > pics.length) {
@@ -161,15 +156,11 @@ const ProductCategories = () => {
     } else if (slidePos === 5) {
       setSlidesRemain(1)
       nextSlide(1)
-    } else { //slidePos === 6
+    } else { 
       setSlidesRemain(1)
       nextSlide(1)
     }
-      // else {
-      // setIndicatorPos(1)
-      // setSlidesRemain(1)
-      // nextSlide(1)
-    // }
+
   }
 
   return (
@@ -190,7 +181,7 @@ const ProductCategories = () => {
       >
         {currentSlides.map ((slide, idx) => (
           <>              
-          <SlidesContainer ref={sliderRef}>
+          <SlidesContainer onClick={() => idx === 2 && nextSlide(1)} idx={idx} ref={sliderRef}>
             <img height="100%" src={slide.image} />
             <Details>
               <div 
@@ -218,6 +209,8 @@ const ProductCategories = () => {
                   @media (max-width: 1400px) {
                     display: none;
                   }
+
+                  cursor: pointer;
                 `}
               >
                 <img height="144px" alt="next category" src={nextCat}></img>
