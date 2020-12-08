@@ -22,21 +22,30 @@ const App = () => {
   const [ tabAccessPopUp, setTabAccessPopUp ] = useState(false)
 
   const stateRef = useRef();
+  stateRef.current = tabAccess 
 
-  stateRef.current = tabAccess
+  const stateRefPopUp = useRef()
+
+  useEffect(() => {
+    stateRefPopUp.current = tabAccessPopUp
+  }, [tabAccessPopUp] )
 
   const configValue = {
     navOpen, setNavOpen
   }
-
 
   const enableTabNav = () => {
     setTabAccess(true)
     setTabAccessPopUp(false)
   }
 
+
   const tabFunction = (e) => {  
-    if(e.key === "Tab" && !stateRef.current) {
+
+    console.log("THIS REF", stateRefPopUp.current)
+    if (e.key === "Tab" && stateRefPopUp.current) {
+      setTabAccessPopUp(false)
+    } else if (e.key === "Tab" && !stateRef.current) {
       setTabAccessPopUp(true)
     }
   }
@@ -62,7 +71,7 @@ const App = () => {
         <Reviews />
         <Sponsors />
         <Footer />
-        <AccessSettings enableTabNav={enableTabNav} setTabAccessPopUp={setTabAccessPopUp} tabAccessPopUp={tabAccessPopUp}/>
+        <AccessSettings tabAccess={tabAccess} setTabAccess={setTabAccess} enableTabNav={enableTabNav} setTabAccessPopUp={setTabAccessPopUp} tabAccessPopUp={tabAccessPopUp}/>
       </GlobalStyles>
     </ConfigContext.Provider>
   )
