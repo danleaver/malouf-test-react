@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
+import styled from '@emotion/styled/macro'
 import { css } from '@emotion/react';
-import styled from '@emotion/styled'; 
+
 import chevDown from '../../assets/nav-main/chev-down.svg'
 import { useContext, useState } from 'react';
 import { ConfigContext } from '../../App';
@@ -18,13 +19,33 @@ const NavLower = (props) => {
   
   return (
     <div className="nav-lower">
-      <div className="nav-lower-hamburger" onClick={() => props.setMobileOpen(!props.mobileOpen)}>
-      </div>
+      <NavItemLeft
+        tabIndex="0"
+        onClick={() => props.setMobileOpen(!props.mobileOpen)}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            props.setMobileOpen(!props.mobileOpen)
+          }
+        }}
+      >
+      <>
+      
+        <Burger open={props.mobileOpen}>
+          <BurgerBun openRight={props.mobileOpen} forward={true}></BurgerBun>
+            <BurgerMeat open={props.mobileOpen}></BurgerMeat>
+          <BurgerBun openLeft={props.mobileOpen}></BurgerBun>
+        </Burger>
+      
+       
+      </>
+      </NavItemLeft>
       <div className="nav-lower-logo">
       </div>
       <div className="nav-lower-spacer" />
       <div className="nav-lower-categories">
-        <div>
+        <div 
+
+        >
           FURNITURE
         </div>
         <div>
@@ -94,8 +115,9 @@ const NavLower = (props) => {
           MATTRESS TOPPERS
         </div>
       </div>
-      <div className="nav-lower-cart">
-      </div>
+      <NavItemRight>
+        <div className="nav-lower-cart" />
+      </NavItemRight>
     </div>
   )
 }
@@ -104,4 +126,59 @@ const UnderlinedBold = styled.div`
   text-decoration: underline;
   font-family: "Geograph-Bold";
 `
+
+
+
+const BurgerBun = styled.div`
+  background: white;
+  height: 1px;
+  width: 19px;
+  transition: 0.3s linear;
+  ${props => props.openRight && "transform-origin: left top; transform: rotate(45deg); width: 26px;" }
+  ${props => props.openLeft && "transform-origin: left bottom; transform: rotate(-45deg); width: 26px;" }
+  
+`
+
+const NavItemLeft = styled.div`
+  width: 50px;
+
+  @media (min-width 768px) {
+    display: none;
+  }
+`
+
+const NavItemRight = styled.div`
+  width: 50px;
+`
+
+const Burger = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 19px;
+  cursor: pointer;
+
+  ${props => !props.open && 
+    `
+      &:hover > div {
+        width: 30px;  
+      }
+    `
+  }
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`
+
+const BurgerMeat = styled.div`
+  background: white;
+  height: 1px;
+  width: 27px;
+  transition: 0.5s ease;
+  
+  ${props => props.open && "width: 0px;"}
+
+`
+
 export default NavLower

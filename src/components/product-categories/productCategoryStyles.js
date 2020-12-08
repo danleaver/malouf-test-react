@@ -172,7 +172,7 @@ export const Slider = styled.div`
   right: 85%;
   height: 51vw; 
   max-height: 735px;
-  transition: transform .35s ease-in-out;
+  transition: transform .35s ease;
   ${props => props.animateInRight && `transform: translateX(-${props.offset}px);`}
   ${props => props.animateInLeft && `transform: translateX(+${props.offset}px);`}
   ${props => props.animateOver && "transition: none; transform: translateX(0);"}

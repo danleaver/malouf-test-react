@@ -27,6 +27,13 @@ const lower = [
   { name: "RETAILER LOGIN", image: retailer, expands: false, },
 ]
 
+
+
+
+const pillowsLinks = ["MEMORY FOAM", "ACTIVEDOUGH", "LATEX", "FILLED", "COOLING", "INFUSIONS", "UNIQUE SHAPES", "TRAVEL"]
+
+
+
 const NavMobile = (props) => {
   const [ subOpen, setSubOpen ] = useState(false);
   const [ open, setOpen ] = useState({
@@ -78,6 +85,7 @@ const NavMobile = (props) => {
 const MenuItem = ({openSubMenu, open, subOpen, category}) => (
   <>
     <NavMobileMenuItem
+      tabIndex="0"  
       onClick={ category.expands ? () => openSubMenu(category.name) : undefined}
       category={category} open={open} subOpen={subOpen}
     >  
@@ -98,7 +106,15 @@ const MenuItem = ({openSubMenu, open, subOpen, category}) => (
       <div />
       { category.expands && 
         open[category.name] === true
-          ? <div class="nav-mobile-menu-plus" onClick={() => openSubMenu(category.name)}>
+          ? <div
+              className="nav-mobile-menu-plus" 
+              onClick={() => openSubMenu(category.name)}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  openSubMenu(category.name)
+                }
+              }}
+            >
               { category.expands && <img src={closeX2} height="10px"/>} 
              </div>
           : <div class="nav-mobile-menu-plus" onClick={() => openSubMenu(category.name)}> { category.expands && "+" } </div>
@@ -106,21 +122,24 @@ const MenuItem = ({openSubMenu, open, subOpen, category}) => (
     </NavMobileMenuItem>
     { open[category.name] === true && 
       <div className="nav-mobile-expanded">
-        <div css={css`display: flex; align-items: center; margin-bottom: 2.5rem;`} onClick={() => openSubMenu(false)}>
+        <CloseButton onClick={() => openSubMenu(false)}>
           <img src={closeX} height="19px"/> &nbsp;&nbsp;Close
-        </div>
+        </CloseButton>
         <div>
-          <p style={{textDecoration: 'underline'}}>{category.name} 101</p>
-          <p style={{textDecoration: 'underline'}}>ALL {category.name}</p>
+            <a href="http://maloufsleep.com">
+              <p style={{textDecoration: 'underline'}}>{category.name} 101</p>
+            </a>
+            <a href="http://maloufsleep.com">
+              <p style={{textDecoration: 'underline'}}>ALL {category.name}</p>           
+             </a>    
           <div className="nav-mobile-expanded-list">
-            <div>MEMORY FOAM</div>
-            <div>ACTIVEDOUGH</div>
-            <div>LATEX</div>
-            <div>FILLED</div>
-            <div>COOLING</div>
-            <div>INFUSIONS</div>
-            <div>UNIQUE SHAPES</div>
-            <div>TRAVEL</div>
+            {pillowsLinks.map(link => (
+              <nav>
+                <a href="http://maloufsleep.com">
+                  {link}
+                </a>
+              </nav>
+            ))}
           </div>
         </div>
       </div>
@@ -136,6 +155,12 @@ const CategoryIcon = styled.div`
   ${props => props.open[props.category.name] && "filter: invert(1);"}
 `
 
+const CloseButton = styled.div`
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 2.5rem;  
+  cursor: pointer;
+`
 const NavMobileMenuItem = styled.div`
   display: flex;
   justify-content: space-between;
