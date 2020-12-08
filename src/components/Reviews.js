@@ -19,8 +19,6 @@ const Reviews = () => {
   const [ slidePos, setSlidePos ] = useState(1);
   const [ currentSlides, setCurrentSlides ] = useState([reviews[0], reviews[1], reviews[2]]) 
 
-
-  // This badly needs to be refactored, but oh well.
   const changeSlide = (index) => {
     switch (index) {
       case 0:
@@ -86,14 +84,13 @@ const Reviews = () => {
           display: flex;
           justify-content: center;
           overflow-x: hidden;
-          // width: 100%;
           background: #1f1f1f;
         `}
       >
 
         { currentSlides.map( (item, pos) => (
           <div onClick={() => pickSlide(pos)}>
-            <Review review={item.review} customer={item.customer} />
+            <Review pos={pos} review={item.review} customer={item.customer} />
           </div>
         ))}
       </div>
@@ -119,27 +116,20 @@ const Reviews = () => {
 
 
 const Review = (props) => (
-  <div 
-    className="reviews"
-  >
-    <div className="review">
+  <ReviewsWrapper>
+    <StyledReview pos={props.pos}>
       <div>
         <img height="35px" src="assets/SVG/5stars.svg" />
       </div>
         {props.review}
-      <div className="reviewer">
+      <StyledReviewer>
         {props.customer}
-      </div>
-    </div>
-  </div>
+      </StyledReviewer>
+    </StyledReview>
+  </ReviewsWrapper>
 )
 
-const Line = styled.div`
-  height: 1px;
-  width: 100%;
-  background: grey;
-  margin: 10px;
-`
+
 const Indicator = styled.div`
   background: grey;
   border-radius: 50%;
@@ -149,6 +139,40 @@ const Indicator = styled.div`
   flex-shrink: 0;
   ${props=> props.pos === props.slidePos && "background: white"};
   cursor: pointer;
+`
+
+const Line = styled.div`
+  height: 1px;
+  width: 100%;
+  background: grey;
+  margin: 10px;
+`
+
+const ReviewsWrapper = styled.div`
+  background: #1f1f1f;
+  color: white;
+  line-height: 30px;
+  font-size: 18px;
+  text-align: center;
+  min-width: 50vw;
+
+`
+
+const StyledReview = styled.div`
+  font-family: Mercury-Text-G2;
+  margin: 5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.1s ease;
+  ${props => props.pos !== 1 && `
+    cursor: pointer;
+    &:hover { transform: scale(1.05)}
+  `}
+`
+
+const StyledReviewer = styled.div`
+  padding: 2rem 0;
+  font-family: "Geograph";
 `
 
 export default Reviews

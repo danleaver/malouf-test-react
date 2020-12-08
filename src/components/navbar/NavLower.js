@@ -8,6 +8,9 @@ import { useContext, useState } from 'react';
 import { ConfigContext } from '../../App';
 import pillow from "../../assets/nav-main/pillow.png"
 
+const pillowsLinks = ["MEMORY FOAM", "ACTIVEDOUGH", "LATEX", "FILLED", "COOLING", "INFUSIONS", "UNIQUE SHAPES", "TRAVEL"]
+
+
 const NavLower = (props) => {
   const [ open, setOpen ] = useState(false);
   const context = useContext(ConfigContext);
@@ -43,18 +46,17 @@ const NavLower = (props) => {
       </div>
       <div className="nav-lower-spacer" />
       <div className="nav-lower-categories">
-        <div 
-
-        >
+        <div tabIndex="0">
           FURNITURE
         </div>
-        <div>
+        <div tabIndex="0">
           BASES
         </div>
-        <div>
+        <div tabIndex="0">
           BEDDING
         </div>
         <div 
+          tabIndex="0"
           css={css`
             position: relative;
             display: inline-block;
@@ -62,6 +64,11 @@ const NavLower = (props) => {
             justify-content: space-between; width: 83px; align-items: center;
           `}
           onMouseEnter={() => toggleNav(true)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              toggleNav(true)
+            }
+          }}
         >
           PILLOWS
           <img height="3.82px" alt="open pillow" src={chevDown} />
@@ -91,16 +98,11 @@ const NavLower = (props) => {
                   margin: 1.5rem 0rem 1.5rem 2rem;
                 `}                  
               >
-                <div>MEMORY FOAM</div>
-                <div>ACTIVEDOUGH</div>
-                <div>LATEX</div>
-                <div>FILLED</div>
-                <div>COOLING</div>
-                <div>INFUSIONS</div>
-                <div>UNIQUE SHAPES</div>
-                <div>TRAVEL</div>
-                <UnderlinedBold>PILLOWS 101</UnderlinedBold>
-                <UnderlinedBold>VIEW ALL PILLOWS</UnderlinedBold>
+{pillowsLinks.map(link => (
+  <nav tabIndex="0"> {link}</nav>
+))}
+                <UnderlinedBold tabIndex="0">PILLOWS 101</UnderlinedBold>
+                <UnderlinedBold tabIndex="0">VIEW ALL PILLOWS</UnderlinedBold>
               </div>
               <div>
                 <img src={pillow} />
@@ -108,15 +110,15 @@ const NavLower = (props) => {
             </div>
           }
         </div>
-        <div>
+        <div tabIndex="0">
           PROTECTORS
         </div>
-        <div>
+        <div tabIndex="0">
           MATTRESS TOPPERS
         </div>
       </div>
-      <NavItemRight>
-        <div className="nav-lower-cart" />
+      <NavItemRight >
+        <div tabIndex="0" className="nav-lower-cart" />
       </NavItemRight>
     </div>
   )

@@ -136,6 +136,7 @@ export const LowerActionButton = styled.div`
   align-items: center;
   font-family: "Mercury-Text-G2";
   font-style: italic; 
+  cursor: pointer;
 `
 
 export const ProductTitle = styled.div`

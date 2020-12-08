@@ -78,15 +78,23 @@ const GlobalStyles = styled.div`
     outline: none;
   }
 
+  nav:focus {
+    outline: none
+  }
+
   ${props => props.tabAccess && `
     div:focus {
-      outline: 3px dotted red;
+      outline: 4px dashed red;
     }
 
     a:focus {
-      outline: 3px dotted red;
+      outline: 4px dashed red;
     }
 
+
+  nav:focus {
+    outline: 4px dashed red;
+  }
   `}
 `
 

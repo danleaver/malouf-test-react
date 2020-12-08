@@ -27,12 +27,7 @@ const lower = [
   { name: "RETAILER LOGIN", image: retailer, expands: false, },
 ]
 
-
-
-
 const pillowsLinks = ["MEMORY FOAM", "ACTIVEDOUGH", "LATEX", "FILLED", "COOLING", "INFUSIONS", "UNIQUE SHAPES", "TRAVEL"]
-
-
 
 const NavMobile = (props) => {
   const [ subOpen, setSubOpen ] = useState(false);
@@ -86,7 +81,12 @@ const MenuItem = ({openSubMenu, open, subOpen, category}) => (
   <>
     <NavMobileMenuItem
       tabIndex="0"  
-      onClick={ category.expands ? () => openSubMenu(category.name) : undefined}
+      onClick={ category.expands ? () => openSubMenu(category.name) : undefined }
+      onKeyPress={category.expands ? (e) => {
+        if (e.key === 'Enter') {
+           openSubMenu(category.name)
+        }
+      } : undefined }
       category={category} open={open} subOpen={subOpen}
     >  
       <NavMobileMenuItem
@@ -109,33 +109,46 @@ const MenuItem = ({openSubMenu, open, subOpen, category}) => (
           ? <div
               className="nav-mobile-menu-plus" 
               onClick={() => openSubMenu(category.name)}
+            >
+              { category.expands && <img src={closeX2} height="10px"/>} 
+             </div>
+          : <div 
+              class="nav-mobile-menu-plus" 
+              onClick={() => openSubMenu(category.name)}
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
                   openSubMenu(category.name)
                 }
               }}
-            >
-              { category.expands && <img src={closeX2} height="10px"/>} 
-             </div>
-          : <div class="nav-mobile-menu-plus" onClick={() => openSubMenu(category.name)}> { category.expands && "+" } </div>
+            > 
+              { category.expands && "+" } 
+            </div>
       }
     </NavMobileMenuItem>
     { open[category.name] === true && 
       <div className="nav-mobile-expanded">
-        <CloseButton onClick={() => openSubMenu(false)}>
+        <CloseButton 
+          tabIndex="0" 
+          onClick={() => openSubMenu(false)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              openSubMenu(false)
+            }
+          }}
+          >
           <img src={closeX} height="19px"/> &nbsp;&nbsp;Close
         </CloseButton>
         <div>
-            <a href="http://maloufsleep.com">
+            <a tabIndex="0">
               <p style={{textDecoration: 'underline'}}>{category.name} 101</p>
             </a>
-            <a href="http://maloufsleep.com">
+            <a tabIndex="0">
               <p style={{textDecoration: 'underline'}}>ALL {category.name}</p>           
-             </a>    
+            </a>
           <div className="nav-mobile-expanded-list">
             {pillowsLinks.map(link => (
-              <nav>
-                <a href="http://maloufsleep.com">
+              <nav tabIndex="0">
+                <a>
                   {link}
                 </a>
               </nav>

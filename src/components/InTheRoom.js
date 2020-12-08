@@ -1,10 +1,14 @@
 import { useState } from 'react';
 
 const products = [
-  { title: "testing", price: "$809.99" },
-  { title: "testing", price: "$809.99" },
-  { title: "testing", price: "$809.99" },
-  { title: "testing", price: "$809.99" },
+  { title: "Blackwell headboard", price: "$856.99" },
+  { title: "Hennesy Platform Bed Base", price: "$856.99" },
+  { title: "M555 Adjustable Base", price: "$856.99" },
+  { title: "Gel Memory Foam Hybrid mattress", price: "View on Wellsville" },
+  { title: "Tencenl Sheet Set", price: "$856.99" },
+  { title: "Gel ActiveDough Pillow", price: "$856.99" },
+  { title: "Tenon Nightstand", price: "View on SaltFlat" },
+  { title: "Tenon Dresser", price: "View on SaltFlat" },
 ]
 
 const InTheRoom = () => {
@@ -33,8 +37,8 @@ const InTheRoom = () => {
         <div className="products-in-the-room-container">
           {open && 
             <>
-              {[ ...Array(6)].map( product => (
-                <Product />
+              {products.map( product => (
+                <Product {...product} />
               ))}
             </>
           }
@@ -44,7 +48,7 @@ const InTheRoom = () => {
   )
 }
 
-const Product = (props) => {
+const Product = ({title, price}) => {
 
   return (
     <div className="products-in-the-room-product">
@@ -53,11 +57,11 @@ const Product = (props) => {
         </div>
         <div className="products-in-the-room-product-right">
           <div>
-            Testing 
+            {title} 
           </div>
-          <div>
-            $809.99
-          </div>
+          <p style={{fontStyle: price && price.split("")[0] === "V" &&  "italic" }}>
+            {price}
+          </p>
         </div>
       </div>
     </div>
