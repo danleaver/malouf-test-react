@@ -293,27 +293,9 @@ a:active {
 }
 
 
-.grayspace {
-  background: #c4c4c4;
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
- 
-}
 
-@media (min-width: 834px) {
-  .grayspace {
-    margin: 1.5rem;
-  }
-}
 
-@media(min-width: 1024px) {
-  .grayspace {
-    margin: 4.5rem;
-  }
-}
+
 /* HERO */
 .hero {
   color: white;
@@ -782,134 +764,7 @@ a:active {
   }
 }
 
-.products-in-the-room {
-  background: #1f1f1f;
-  color: white;
-  text-align: center;
-  font-family: "Geograph-500";
-  padding: 0.5rem 1rem ;
-  margin: 0.75rem 0;
-  width: calc(100% - 1.75rem);
-  font-size: 14px;
-  letter-spacing: 1.5px;
-}
-.products-in-the-room-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-.products-in-the-room-icon-open {
-  background: url(./assets/SVG/products-room-close.svg) center no-repeat;
-  background-size: cover;
-  margin-left: 0.5rem;
-  height: 26px;
-  width: 26px;
-}
-.products-in-the-room-icon-close {
-  background: url(./assets/SVG/products-room-open.svg) center no-repeat;
-  background-size: cover;
-  height: 26px;
-  width: 26px;
-  margin-left: 0.5rem;
 
-}
-
-.products-in-the-room-list {
-  font-family: "Geograph-500";
-  
-}
-
-.products-in-the-room-list-main {
-  font-family: "Geograph-Bold";
- 
-}
-
-.products-in-the-room-product {
-  padding: 1rem;
-  background: #1f1f1f;
-  color: white;
-  width: calc(320px - 3rem);
-  cursor: pointer;
-}
-
-.products-in-the-room-product-gray {
-  height: 75px;
-  width: 90px;
-  background: #c4c4c4;
-  flex-shrink: 0;
-}
-
-.products-in-the-room-product-right {
-  padding: 0 1.5rem; 
-  display: flex; 
-  flex-direction: column;
-  text-align: left; 
-  height: 80px; 
-  justify-content: space-between;
-
-  
-
-}
-
-.products-in-the-room-product-right > p {
-  font-family: "Geograph";
-}
-
-.products-in-the-room-product-container {
-  display: flex;
-}
-
-
-.products-in-the-room-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 833px) {
-  .products-in-the-room-list-main {
-    display: none !important;
-  }
-}
-
-@media (min-width: 834px) {
-  .products-in-the-room {
-    margin: 0;
-    padding: 0;
-    background: #c4c4c4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .products-in-the-room-menu {
-    background: #1f1f1f;
-    display: flex;
-    justify-content: center;
-    width: 300px;
-    padding: 2rem;
-  }
-
-  .products-in-the-room-list {
-    display: none !important;
-  }
-
-  .products-in-the-room-list-main {
-
-  }
-
-  .products-in-the-room-product {
-    width: 360px;
-    border: 1px solid white;
-  }
-}
-
-@media (min-width: 1024px) {
-  .products-in-the-room-product {
-    width: 302px;
-  }
-}
 
 
 .sleep-purpose {

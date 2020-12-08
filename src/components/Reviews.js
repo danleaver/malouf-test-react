@@ -4,14 +4,14 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 const reviews = [
+  { review: "This is an even longer and better  customer review that informs other people that our products are the  the best they have ever had and they should buy them or else their life will suck until they give in and buy already.",
+    customer: "- Pillows Yearly Report 2021"
+  },
  { review: "This is a customer review that informs other people that our products are the bomb and they should buy them.",
    customer: "- Mrs. Reviewer"
  },
- { review: "A different review from some other customer who also loves the company and everything about it.",
+ { review: "What a great place to get all the things! A different review from some other customer who also loves the company and everything about it.",
    customer: "- John Johnston"
- },
- { review: "This is an even longer and better  customer review that informs other people that our products are the  the best they have ever had and they should buy them or else their life will suck until they give in and buy already.",
-   customer: "- Pillows Yearly Report 2021"
  },
 ]
 
@@ -118,9 +118,9 @@ const Reviews = () => {
 const Review = (props) => (
   <ReviewsWrapper>
     <StyledReview pos={props.pos}>
-      <div>
+      <Stars>
         <img height="35px" src="assets/SVG/5stars.svg" />
-      </div>
+      </Stars>
         {props.review}
       <StyledReviewer>
         {props.customer}
@@ -155,9 +155,24 @@ const ReviewsWrapper = styled.div`
   font-size: 18px;
   text-align: center;
   min-width: 50vw;
+  
 
+  @media(max-width: 767px) {
+    // font-size: 14px;
+    // min-width: 25vw;
+    // margin: 0 -10%;
+
+    // display: flex;
+  }
+
+  // border: 1px solid red;
 `
 
+const Stars = styled.div`
+  @media(max-width: 768px) {
+    transform: scale(.9);
+  }
+`
 const StyledReview = styled.div`
   font-family: Mercury-Text-G2;
   margin: 5rem;
@@ -168,6 +183,17 @@ const StyledReview = styled.div`
     cursor: pointer;
     &:hover { transform: scale(1.05)}
   `}
+
+  max-width: 500px;
+  @media(max-width: 767px) {
+    margin: 5rem 1rem;
+    // width: 100px;
+  }
+  @media(max-width: 400px) {
+    margin: 5rem 0.5rem;
+    // width: 100px;
+  }
+  
 `
 
 const StyledReviewer = styled.div`

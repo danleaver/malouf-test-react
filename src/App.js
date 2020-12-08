@@ -11,7 +11,7 @@ import SleepPurpose from './components/SleepPurpose';
 import Sponsors from './components/Sponsors';
 import WeUnderstand from './components/WeUnderstand';
 import Footer from './components/Footer';
-import { createContext, useCallback, useState, useRef} from 'react';
+import { createContext, useCallback, useState, useRef, useEffect} from 'react';
 import AccessSettings from './components/AccessSettings';
 
 export const ConfigContext = createContext()
@@ -20,7 +20,6 @@ const App = () => {
   const [ navOpen, setNavOpen ] = useState(false);
   const [ tabAccess, setTabAccess ] = useState(false)
   const [ tabAccessPopUp, setTabAccessPopUp ] = useState(false)
-
 
   const stateRef = useRef();
 
@@ -42,7 +41,7 @@ const App = () => {
     }
   }
 
-  useState(() => {
+  useEffect(() => {
     document.addEventListener("keydown", tabFunction, false)
 
     return () => {

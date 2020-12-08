@@ -1,3 +1,5 @@
+import styled from '@emotion/styled/macro';
+
 const BestSellers = () => (
   <div className="best-sellers">
     <div className="best-sellers-container">
@@ -58,5 +60,8 @@ const BestSellers = () => (
     </div>
   </div>
 )
+
+
+
 
 export default BestSellers
