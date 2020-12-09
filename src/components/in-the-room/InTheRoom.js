@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from '@emotion/styled/macro';
+import InTheRoomProduct from './InTheRoomProduct';
 
 const products = [
   { title: "Blackwell headboard", price: "$856.99" },
@@ -16,29 +17,26 @@ const InTheRoom = () => {
   const [ open, setOpen ] = useState(false);
 
   return (
-  
     <Greyspace>
       <Wrapper>
         <Menu onClick={() => setOpen(!open)}>
           SHOP PRODUCTS IN THE ROOM
           <Icon open={open} />
         </Menu>
-        {/* mobile */}
         { open && 
           <List>
             {products.map( product => (
-              <Product {...product}/>
+              <InTheRoomProduct {...product}/>
             ))}
           </List>
         }
       </Wrapper>
-      {/* min width 768px */}
       <ListMain>
         <ProductsContainer>
           {open && 
             <>
               {products.map( product => (
-                <Product {...product} />
+                <InTheRoomProduct {...product} />
               ))}
             </>
           }
@@ -48,28 +46,6 @@ const InTheRoom = () => {
   )
 }
 
-const Product = ({title, price}) => {
-
-  return (
-    <StyledProduct>
-      <ProductContainer>
-        <Grey>
-        </Grey>
-        <ProductRight>
-          <div>
-            {title} 
-          </div>
-          <StyledP style={{fontStyle: price && price.split("")[0] === "V" &&  "italic" }}>
-            {price}
-          </StyledP>
-        </ProductRight>
-      </ProductContainer>
-    </StyledProduct>
-  )
-  
-}
-export default InTheRoom
-
 const Greyspace = styled.div`
   background: #c4c4c4;
   min-height: 300px;
@@ -78,16 +54,12 @@ const Greyspace = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  @media (min-width: 834px) {
- 
-      margin: 1.5rem;
-    
+  @media (min-width: 834px) { 
+    margin: 1.5rem; 
   }
   
   @media(min-width: 1024px) {
-
-      margin: 4.5rem;
-    
+     margin: 4.5rem;  
   }
 `
 
@@ -137,12 +109,12 @@ const Icon = styled.div`
   ${props => props.open && "transform: rotateX(180deg);"}
 `
 
-
 const List = styled.div`
-  @media(min-width: 834px) {display: none;}
+  @media(min-width: 834px) {
+    display: none;
+  }
   font-family: "Geograph-Bold";
 ` 
-
 
 const ListMain = styled.div`
   font-family: "Geograph-Bold";
@@ -153,67 +125,9 @@ const ListMain = styled.div`
   height: 100%;
 
   @media (max-width: 833px) { 
-    display: none;
+    display: none; 
   }
 `
-
-const StyledProduct = styled.div`
-  padding: 1rem;
-  background: #1f1f1f;
-  color: white;
-  width: 50%;
-  cursor: pointer;
-  
-  @media (min-width: 834px) {
-    max-width: calc(33.33% - 2rem - 2px);
-    min-width: calc(50% - 2rem - 2px);
-    border: 1px solid white; 
-  }
-
-  @media (min-width: 1152px) {
-    max-width: calc(25% - 2rem - 2px);
-    min-width: calc(33.33% - 2rem - 2px);
-  }
-
-  @media (min-width: 1440px) {
-    min-width: calc(25% - 2rem - 2px);
-  }
-`
-
-
-const Grey = styled.div`
-  height: 75px;
-  width: 90px;
-  background: #c4c4c4;
-  flex-shrink: 0;
-`
-
-const ProductRight = styled.div`
-  padding: 0 1.5rem; 
-  display: flex; 
-  flex-direction: column;
-  text-align: left; 
-  height: 80px; 
-  justify-content: space-between; 
-  @media (max-width: 767px) {
- 
-    flex-shrink: 0;
-  }
-
-   @media (max-width: 500px) {
-     & > div { width: 200px }
-  }
-`
-
-const StyledP = styled.p`
-  font-family: "Geograph";
-`
-
-
-const ProductContainer = styled.div`
-  display: flex;
-`
-
 
 const ProductsContainer = styled.div`
   display: flex;
@@ -225,5 +139,6 @@ const ProductsContainer = styled.div`
   @media(min-width: 834px) {
     justify-content: flex-start;
   }
-  `
+`
 
+  export default InTheRoom

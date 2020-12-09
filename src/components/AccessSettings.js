@@ -1,6 +1,6 @@
 import styled from '@emotion/styled/macro'
 import accessoptions from '../assets/access/accessoptions.png'
-import { useState, useRef, useEffect, ReactDOM } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const AccessSettings = (props) => {
   const [ showAccess, setShowAccess ] = useState(true);
@@ -8,7 +8,6 @@ const AccessSettings = (props) => {
   const [ toastAlert, setToastAlert ] = useState(false)
 
   useEffect(() => {
-    console.log("the ref", accessRef)
     accessRef.current && focusDiv()
   }, [props.tabAccessPopUp])
 
@@ -17,12 +16,12 @@ const AccessSettings = (props) => {
   }
 
   const showToastAlert = () => {
-
     setToastAlert(true)
     setTimeout( () => {
       setToastAlert(false)
-    }, 4000)
+    }, 3000)
   }
+
   const toggleTabNav = () => {
     if (props.tabAccess === false) {
       props.setTabAccessPopUp(true)
@@ -35,44 +34,45 @@ const AccessSettings = (props) => {
       showToastAlert()
     }
   }
+
   return (
     <>
-    { toastAlert && 
-     <EnableTab>
-        <h3>
-          Keyboard Navigation Disabled
-        </h3>
-        <p>Press Tab To Enable</p>
-      </EnableTab>}
-    {props.tabAccessPopUp &&
-      <EnableTab 
-        ref={accessRef}
-        tabIndex="99"
-        onBlur={() => props.setTabAccessPopUp(false)}
-        onKeyPress={(e) => {
-          if (e.key === 'Enter') {
-            props.enableTabNav()
-          } else {
-            props.setTabAccessPopUp(false)
-          }
-        }}
-        onKeyDown={(e) => {
-          if ((e.key === "Escape") || (e.key === "Tab")) {
-            props.setTabAccessPopUp(false)
-          } 
-        }}  
-      >
-        <h3>
-         Enable Keyboard Navigation
-        </h3>
-        <p>Press Enter</p>
-        
-      </EnableTab>
-    }
-    <Settings  showAccess={showAccess}>
-      <Hide onClick={() => setShowAccess(!showAccess)}> {!showAccess ? "Unhide" : "Hide"}</Hide>
-      <img onClick={() => toggleTabNav()} alt="enable Keyboard Navigation" src={accessoptions} height="60px" />
-    </Settings>
+      { toastAlert && 
+      <EnableTab>
+          <h3>
+            Keyboard Navigation Disabled
+          </h3>
+          <p>Press Tab To Enable</p>
+        </EnableTab>}
+      {props.tabAccessPopUp &&
+        <EnableTab 
+          ref={accessRef}
+          tabIndex="99"
+          onBlur={() => props.setTabAccessPopUp(false)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              props.enableTabNav()
+            } else {
+              props.setTabAccessPopUp(false)
+            }
+          }}
+          onKeyDown={(e) => {
+            if ((e.key === "Escape") || (e.key === "Tab")) {
+              props.setTabAccessPopUp(false)
+            } 
+          }}  
+        >
+          <h3>
+          Enable Keyboard Navigation
+          </h3>
+          <p>Press Enter</p>
+          
+        </EnableTab>
+      }
+      <Settings  showAccess={showAccess}>
+        <Hide onClick={() => setShowAccess(!showAccess)}> {!showAccess ? "Unhide" : "Hide"}</Hide>
+        <img onClick={() => toggleTabNav()} alt="enable Keyboard Navigation" src={accessoptions} height="60px" />
+      </Settings>
     </>
   )
 }
@@ -91,14 +91,12 @@ const EnableTab = styled.div`
   flex-direction: column;
   justify-content: space-bewteen;
   align-items: center;
-  
+  z-index: 9999;
+
   &:focus {
     border: 4px dashed red;
   }
-
-  z-index: 9999;
 `
-
 
 const Settings = styled.div`
   width: 80px;
@@ -111,16 +109,14 @@ const Settings = styled.div`
   align-items: center;
   display: flex;
   transition: all 1s ease;
-
-
+  z-index: 9999;
   ${props => !props.showAccess && "transform: translateX(80%);"}
+  
   &:hover > span {
     visibility: visible;
     opacity: 1;
     transform: translateX(-20%);
   }
-
-  z-index: 9999;
 `
 
 const Hide = styled.span`
@@ -132,7 +128,6 @@ const Hide = styled.span`
   opacity: 0;
   padding: 0.5rem 0.8rem;
   transition: all 1s ease;
-  // padding-right: 1rem;
   text-align: center;
   flex-shrink: 0;
   border-radius: 15px;

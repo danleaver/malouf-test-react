@@ -1,4 +1,4 @@
-import styled from '@emotion/styled/macro';
+
 
 const BestSellers = () => (
   <div className="best-sellers">
@@ -10,58 +10,22 @@ const BestSellers = () => (
         </div>
       </div>
       <div className="best-sellers-products">
-        <div className="best-sellers-product">
-          <img height="200px" src="assets/bestsellers/bestsellers.png" />
-          <div className="best-sellers-product-info">
-            <div className="best">
-              Shoulder Zoned Dough® + Bamboo Charcoal Pillow 
-            </div>
-            <div>
-              $115.99
-            </div>
-          </div>
-        </div>
-        <div className="best-sellers-product">
-          <img height="200px" src="assets/bestsellers/bestsellers.png" />
-          <div className="best-sellers-product-info">
-            <div className="best">
-              Shoulder Zoned Dough® + Bamboo Charcoal Pillow 
-            </div>
-            <div>
-              $115.99
+        { [...Array(4)].map( item=> (
+          <div className="best-sellers-product">
+            <img alt="best seller" height="200px" src="assets/bestsellers/bestsellers.png" />
+            <div className="best-sellers-product-info">
+              <div className="best">
+                Shoulder Zoned Dough® + Bamboo Charcoal Pillow 
+              </div>
+              <div>
+                $115.99
+              </div>
             </div>
           </div>
-        </div>
-        <div className="best-sellers-product">
-          <img height="200px" src="assets/bestsellers/bestsellers.png" />
-          <div className="best-sellers-product-info">
-            <div className="best">
-              Shoulder Zoned Dough® + Bamboo Charcoal Pillow 
-            </div>
-            <div>
-              $115.99
-            </div>
-          </div>
-        </div>
-        <div className="best-sellers-product">
-          <img height="200px" src="assets/bestsellers/bestsellers.png" />
-          <div className="best-sellers-product-info">
-            <div className="best">
-              Shoulder Zoned Dough® + Bamboo Charcoal Pillow 
-            </div>
-            <div>
-              $115.99
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
-    </div>
-    <div className="best-sellers-slider-bar">
     </div>
   </div>
 )
-
-
-
 
 export default BestSellers

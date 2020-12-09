@@ -1,15 +1,12 @@
 /** @jsxImportSource @emotion/react */
-
 import styled from '@emotion/styled/macro'
 import { css } from '@emotion/react';
-
 import chevDown from '../../assets/nav-main/chev-down.svg'
 import { useContext, useState } from 'react';
 import { ConfigContext } from '../../App';
 import pillow from "../../assets/nav-main/pillow.png"
 
 const pillowsLinks = ["MEMORY FOAM", "ACTIVEDOUGH", "LATEX", "FILLED", "COOLING", "INFUSIONS", "UNIQUE SHAPES", "TRAVEL"]
-
 
 const NavLower = (props) => {
   const [ open, setOpen ] = useState(false);
@@ -31,16 +28,11 @@ const NavLower = (props) => {
           }
         }}
       >
-      <>
-      
         <Burger open={props.mobileOpen}>
-          <BurgerBun openRight={props.mobileOpen} forward={true}></BurgerBun>
-            <BurgerMeat open={props.mobileOpen}></BurgerMeat>
-          <BurgerBun openLeft={props.mobileOpen}></BurgerBun>
+          <BurgerBun openRight={props.mobileOpen} forward={true} />
+            <BurgerMeat open={props.mobileOpen} />
+          <BurgerBun openLeft={props.mobileOpen} />
         </Burger>
-      
-       
-      </>
       </NavItemLeft>
       <div className="nav-lower-logo">
       </div>
@@ -62,8 +54,10 @@ const NavLower = (props) => {
             display: inline-block;
             display: flex; 
             justify-content: space-between; width: 83px; align-items: center;
+            height: 3rem;
           `}
           onMouseEnter={() => toggleNav(true)}
+          onMouseLeave={() => toggleNav(false)}
           onKeyPress={(e) => {
             if (e.key === "Enter") {
               toggleNav(true)
@@ -74,7 +68,6 @@ const NavLower = (props) => {
           <img height="3.82px" alt="open pillow" src={chevDown} />
           { open && 
             <div 
-              onMouseLeave={() => toggleNav(false)}
               css={css`
                 position: absolute;
                 min-width: 400px;
@@ -83,11 +76,15 @@ const NavLower = (props) => {
                 width: calc(609px - 2rem);
                 height: calc(393px - 2rem);
                 background: white;
-                // margin: -2rem;
+                margin:   1.2rem -1rem;
                 display: flex;
                 justify-content: space-between;
                 color: black;
                 padding: 1rem;
+
+                @media (max-width: 1300px){
+                  margin: 1.2rem -5rem;
+                }
               `}
             >
               <div
@@ -98,14 +95,14 @@ const NavLower = (props) => {
                   margin: 1.5rem 0rem 1.5rem 2rem;
                 `}                  
               >
-{pillowsLinks.map(link => (
-  <nav tabIndex="0"> {link}</nav>
-))}
-                <UnderlinedBold tabIndex="0">PILLOWS 101</UnderlinedBold>
-                <UnderlinedBold tabIndex="0">VIEW ALL PILLOWS</UnderlinedBold>
+                {pillowsLinks.map(link => (
+                  <nav tabIndex="0"> {link}</nav>
+                ))}
+                <NavItem tabIndex="0">PILLOWS 101</NavItem>
+                <NavItem tabIndex="0">VIEW ALL PILLOWS</NavItem>
               </div>
               <div>
-                <img src={pillow} />
+                <img src={pillow} alt="pillow submenu"/>
               </div>
             </div>
           }
@@ -124,12 +121,10 @@ const NavLower = (props) => {
   )
 }
 
-const UnderlinedBold = styled.div`
+const NavItem = styled.div`
   text-decoration: underline;
   font-family: "Geograph-Bold";
 `
-
-
 
 const BurgerBun = styled.div`
   background: white;
@@ -138,7 +133,6 @@ const BurgerBun = styled.div`
   transition: 0.3s linear;
   ${props => props.openRight && "transform-origin: left top; transform: rotate(45deg); width: 26px;" }
   ${props => props.openLeft && "transform-origin: left bottom; transform: rotate(-45deg); width: 26px;" }
-  
 `
 
 const NavItemLeft = styled.div`
@@ -160,13 +154,11 @@ const Burger = styled.div`
   height: 19px;
   cursor: pointer;
 
-  ${props => !props.open && 
-    `
-      &:hover > div {
-        width: 30px;  
-      }
-    `
-  }
+  ${props => !props.open && `
+    &:hover > div {
+      width: 30px;  
+    }
+  `}
 
   @media (min-width: 1024px) {
     display: none;
@@ -178,9 +170,7 @@ const BurgerMeat = styled.div`
   height: 1px;
   width: 27px;
   transition: 0.5s ease;
-  
   ${props => props.open && "width: 0px;"}
-
 `
 
 export default NavLower

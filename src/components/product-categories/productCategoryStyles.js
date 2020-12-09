@@ -4,7 +4,12 @@ import chevLeft from '../../assets/product-categories/chev-left.svg'
 import chevRight from '../../assets/product-categories/chev-right.svg'
 
 
-
+export const CenterBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+`
 export const ChevLeft = styled.div`
   background: url(${chevLeft}) center no-repeat;
   background-size: cover;
@@ -139,9 +144,25 @@ export const LowerActionButton = styled.div`
   cursor: pointer;
 `
 
+export const NextCategory = styled.div`
+  margin: 2rem 0;
+  cursor: zoom-in;
+
+  @media (max-width: 1400px) {
+    display: none;
+  }
+`
+
+
 export const ProductTitle = styled.div`
   font-family: "Geograph-500";
   font-size: 20px;
+`
+
+export const ProductCategoriesStyled = styled.div`
+  font-family: "Mercury-Text-G2";
+  font-style: italic;
+  font-size: 16px;  
 `
 
 export const SliderAction = styled.div`
@@ -164,6 +185,29 @@ export const SliderActionMain = styled.div`
   @media (max-width: 767px) {
     display: none;
   }
+`
+
+export const SlideDetails = styled.div`
+  font-family: Mercury-Text-G2;
+
+  @media (max-width: 1023px) {
+    max-width: 350px;
+  }
+
+  @media (max-width: 868px) {
+    max-width: 280px;
+  }
+`
+
+export const SlideTitle = styled.div`
+  font-size: 26px;
+  font-family: "Geograph-Bold";
+  line-height: 28px;
+  margin: -1.5rem 0 0;
+
+  @media (max-width: 1023px) {
+    font-size: 20px;
+  }  
 `
 
 export const Slider = styled.div`

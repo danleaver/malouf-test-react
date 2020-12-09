@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled  from '@emotion/styled';
 import bus from '../assets/sponsors/businsider.png'
 import ny from '../assets/sponsors/newyork.png'
@@ -119,4 +119,5 @@ const FlexContainer = styled.div`
   align-items: center;
   width: 50%;
 `
+
 export default Sponsors

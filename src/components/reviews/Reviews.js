@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import Review from './Review';
 
 const reviews = [
   { review: "This is an even longer and better  customer review that informs other people that our products are the  the best they have ever had and they should buy them or else their life will suck until they give in and buy already.",
@@ -77,6 +78,7 @@ const Reviews = () => {
       setSlidePos(2)
     }
   }
+
   return (
     <>
       <div 
@@ -105,7 +107,7 @@ const Reviews = () => {
         <Line />
         { 
           [...Array(3)].map( (tmp, pos) => (
-            <Indicator slidePos={slidePos} pos={pos} onClick={() => changeSlide(pos)}> </Indicator>
+            <Indicator slidePos={slidePos} pos={pos} onClick={() => changeSlide(pos)} />
           ))
         }
         <Line />
@@ -113,22 +115,6 @@ const Reviews = () => {
     </>
   )
 }
-
-
-const Review = (props) => (
-  <ReviewsWrapper>
-    <StyledReview pos={props.pos}>
-      <Stars>
-        <img height="35px" src="assets/SVG/5stars.svg" />
-      </Stars>
-        {props.review}
-      <StyledReviewer>
-        {props.customer}
-      </StyledReviewer>
-    </StyledReview>
-  </ReviewsWrapper>
-)
-
 
 const Indicator = styled.div`
   background: grey;
@@ -146,59 +132,6 @@ const Line = styled.div`
   width: 100%;
   background: grey;
   margin: 10px;
-`
-
-const ReviewsWrapper = styled.div`
-  background: #1f1f1f;
-  color: white;
-  line-height: 30px;
-  font-size: 18px;
-  text-align: center;
-  min-width: 50vw;
-  
-
-  @media(max-width: 767px) {
-    // font-size: 14px;
-    // min-width: 25vw;
-    // margin: 0 -10%;
-
-    // display: flex;
-  }
-
-  // border: 1px solid red;
-`
-
-const Stars = styled.div`
-  @media(max-width: 768px) {
-    transform: scale(.9);
-  }
-`
-const StyledReview = styled.div`
-  font-family: Mercury-Text-G2;
-  margin: 5rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.1s ease;
-  ${props => props.pos !== 1 && `
-    cursor: pointer;
-    &:hover { transform: scale(1.05)}
-  `}
-
-  max-width: 500px;
-  @media(max-width: 767px) {
-    margin: 5rem 1rem;
-    // width: 100px;
-  }
-  @media(max-width: 400px) {
-    margin: 5rem 0.5rem;
-    // width: 100px;
-  }
-  
-`
-
-const StyledReviewer = styled.div`
-  padding: 2rem 0;
-  font-family: "Geograph";
 `
 
 export default Reviews
