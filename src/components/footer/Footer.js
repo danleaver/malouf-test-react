@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import news from '../../assets/footer/news.png'
 import news2 from '../../assets/footer/news2.png'
